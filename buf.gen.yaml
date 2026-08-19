@@ -1,15 +1,24 @@
 version: v2
+
+inputs:
+  - directory: proto
+
 plugins:
   - remote: buf.build/protocolbuffers/go
     out: gen/go
+    opt:
+      - paths=source_relative
+
+  - remote: buf.build/grpc/go
+    out: gen/go
+    opt:
+      - paths=source_relative
+
   - local: ./node_modules/.bin/protoc-gen-ts_proto
     out: gen/ts
     opt:
-      - outputServices=grpc-js
+      - nestJs=true
       - esModuleInterop=true
       - forceLong=long
       - useOptionals=messages
       - paths=source_relative
-inputs:
-  - directory: proto
-
