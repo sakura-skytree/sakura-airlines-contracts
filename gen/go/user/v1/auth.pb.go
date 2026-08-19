@@ -25,6 +25,7 @@ const (
 type GetUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Msg           string                 `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
+	Msg2          string                 `protobuf:"bytes,2,opt,name=msg2,proto3" json:"msg2,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -66,13 +67,21 @@ func (x *GetUserResponse) GetMsg() string {
 	return ""
 }
 
+func (x *GetUserResponse) GetMsg2() string {
+	if x != nil {
+		return x.Msg2
+	}
+	return ""
+}
+
 var File_user_v1_auth_proto protoreflect.FileDescriptor
 
 const file_user_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x12user/v1/auth.proto\x12\aauth.v1\x1a\x1bgoogle/protobuf/empty.proto\"#\n" +
+	"\x12user/v1/auth.proto\x12\aauth.v1\x1a\x1bgoogle/protobuf/empty.proto\"7\n" +
 	"\x0fGetUserResponse\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg2J\n" +
+	"\x03msg\x18\x01 \x01(\tR\x03msg\x12\x12\n" +
+	"\x04msg2\x18\x02 \x01(\tR\x04msg22J\n" +
 	"\vAuthService\x12;\n" +
 	"\aGetUser\x12\x16.google.protobuf.Empty\x1a\x18.auth.v1.GetUserResponseB5Z3github.com/sakura-skytree/sakura-airlines-contractsb\x06proto3"
 

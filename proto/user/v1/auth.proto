@@ -12,4 +12,5 @@ service AuthService {
 
 message GetUserResponse {
   string msg = 1;
+  string msg2 = 2;
 }

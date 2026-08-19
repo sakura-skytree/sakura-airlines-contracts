@@ -13,6 +13,7 @@ export const protobufPackage = "auth.v1";
 
 export interface GetUserResponse {
   msg: string;
+  msg2: string;
 }
 
 export const AUTH_V1_PACKAGE_NAME = "auth.v1";
