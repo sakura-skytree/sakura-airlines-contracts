@@ -1,6 +1,6 @@
 {
   "name": "@sakura-skytree/sakura-airlines-contracts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "ISC",
   "main": "./dist/index.js",
   "types": "./dist/",
@@ -8,7 +8,11 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "type": "commonjs",
-  "files": ["dist", "proto", "gen"],
+  "files": [
+    "dist",
+    "proto",
+    "gen"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -21,4 +25,3 @@
     "@alfuzi/code-style": "^1.0.3"
   }
 }
-
