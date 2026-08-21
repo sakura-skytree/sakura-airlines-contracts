@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package auth.v1;
+
+option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/auth/v1;authv1";
+
+import "user/v1/user.proto";
+import "google/protobuf/empty.proto";
+
+service AuthService {
+  rpc Register(RegisterRequest) returns(RegisterResponse);
+
+  rpc Login(LoginRequest) returns(LoginResponse);
+
+  rpc Logout(LogoutRequest) returns(google.protobuf.Empty);
+
+  rpc GetCurrentUser(GetCurrentUserRequest) returns(GetCurrentUserResponse);
+}
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message RegisterResponse {
+  user.v1.User user = 1;
+  string session_id = 2;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  user.v1.User user = 1;
+  string session_id = 2;
+}
+
+message LogoutRequest {
+  string session_id = 1;
+}
+
+message GetCurrentUserRequest {
+ string session_id = 1;
+}
+
+message GetCurrentUserResponse {
+ user.v1.User user = 1;
+}

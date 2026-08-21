@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package session.v1;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/session/v1;sessionv1";
+
+service SessionService {
+  rpc DestroySession(DestroySessionRequest) returns(google.protobuf.Empty);
+}
+
+message DestroySessionRequest {
+  string session_id = 1;
+}

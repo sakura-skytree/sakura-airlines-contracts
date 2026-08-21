@@ -4,7 +4,6 @@ modules:
 lint:
   use:
     - STANDARD
-  disallow_comment_ignores: true
 breaking:
   use:
     - FILE

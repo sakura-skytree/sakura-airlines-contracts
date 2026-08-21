@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package user.v1;
+
+option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/v1;userv1";
+
+message User {
+  string id = 1;
+  string email = 2;
+  string password = 3;
+}
