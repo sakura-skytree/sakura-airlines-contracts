@@ -6,6 +6,16 @@ export const GRPC_SERVICES = {
 		protoPath: PROTO_PATCH.AUTH,
 		url: 'GRPC_USER',
 	},
+	SESSION_PACKAGE: {
+		package: 'session.v1',
+		protoPath: PROTO_PATCH.SESSION,
+		url: 'GRPC_USER',
+	},
+	USER_PACKAGE: {
+		package: 'user.v1',
+		protoPath: PROTO_PATCH.USER,
+		url: 'GRPC_USER',
+	},
 } as const
 
 export type GrpcServiceNames = keyof typeof GRPC_SERVICES
