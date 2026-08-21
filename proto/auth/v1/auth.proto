@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package auth.v1;
 
-option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/auth/v1;authv1";
-
-import "user/v1/user.proto";
 import "google/protobuf/empty.proto";
+import "user/v1/user.proto";
+
+option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/auth/v1;authv1";
 
 service AuthService {
   rpc Register(RegisterRequest) returns(RegisterResponse);
