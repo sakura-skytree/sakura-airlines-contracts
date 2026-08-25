@@ -11,7 +11,6 @@ export const protobufPackage = "user.v1";
 export interface User {
   id: string;
   email: string;
-  password: string;
 }
 
 export const USER_V1_PACKAGE_NAME = "user.v1";

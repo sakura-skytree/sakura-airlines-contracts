@@ -36,11 +36,11 @@ export interface LogoutRequest {
   sessionId: string;
 }
 
-export interface GetCurrentUserRequest {
+export interface GetAuthUserRequest {
   sessionId: string;
 }
 
-export interface GetCurrentUserResponse {
+export interface GetAuthUserResponse {
   user?: User | undefined;
 }
 
@@ -53,7 +53,7 @@ export interface AuthServiceClient {
 
   logout(request: LogoutRequest): Observable<Empty>;
 
-  getCurrentUser(request: GetCurrentUserRequest): Observable<GetCurrentUserResponse>;
+  getAuthUser(request: GetAuthUserRequest): Observable<GetAuthUserResponse>;
 }
 
 export interface AuthServiceController {
@@ -63,14 +63,14 @@ export interface AuthServiceController {
 
   logout(request: LogoutRequest): void | Promise<void>;
 
-  getCurrentUser(
-    request: GetCurrentUserRequest,
-  ): Promise<GetCurrentUserResponse> | Observable<GetCurrentUserResponse> | GetCurrentUserResponse;
+  getAuthUser(
+    request: GetAuthUserRequest,
+  ): Promise<GetAuthUserResponse> | Observable<GetAuthUserResponse> | GetAuthUserResponse;
 }
 
 export function AuthServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["register", "login", "logout", "getCurrentUser"];
+    const grpcMethods: string[] = ["register", "login", "logout", "getAuthUser"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("AuthService", method)(constructor.prototype[method], method, descriptor);

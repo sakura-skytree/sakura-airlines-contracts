@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_Register_FullMethodName       = "/auth.v1.AuthService/Register"
-	AuthService_Login_FullMethodName          = "/auth.v1.AuthService/Login"
-	AuthService_Logout_FullMethodName         = "/auth.v1.AuthService/Logout"
-	AuthService_GetCurrentUser_FullMethodName = "/auth.v1.AuthService/GetCurrentUser"
+	AuthService_Register_FullMethodName    = "/auth.v1.AuthService/Register"
+	AuthService_Login_FullMethodName       = "/auth.v1.AuthService/Login"
+	AuthService_Logout_FullMethodName      = "/auth.v1.AuthService/Logout"
+	AuthService_GetAuthUser_FullMethodName = "/auth.v1.AuthService/GetAuthUser"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -33,7 +33,7 @@ type AuthServiceClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetCurrentUser(ctx context.Context, in *GetCurrentUserRequest, opts ...grpc.CallOption) (*GetCurrentUserResponse, error)
+	GetAuthUser(ctx context.Context, in *GetAuthUserRequest, opts ...grpc.CallOption) (*GetAuthUserResponse, error)
 }
 
 type authServiceClient struct {
@@ -74,10 +74,10 @@ func (c *authServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts 
 	return out, nil
 }
 
-func (c *authServiceClient) GetCurrentUser(ctx context.Context, in *GetCurrentUserRequest, opts ...grpc.CallOption) (*GetCurrentUserResponse, error) {
+func (c *authServiceClient) GetAuthUser(ctx context.Context, in *GetAuthUserRequest, opts ...grpc.CallOption) (*GetAuthUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetCurrentUserResponse)
-	err := c.cc.Invoke(ctx, AuthService_GetCurrentUser_FullMethodName, in, out, cOpts...)
+	out := new(GetAuthUserResponse)
+	err := c.cc.Invoke(ctx, AuthService_GetAuthUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,7 +91,7 @@ type AuthServiceServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error)
-	GetCurrentUser(context.Context, *GetCurrentUserRequest) (*GetCurrentUserResponse, error)
+	GetAuthUser(context.Context, *GetAuthUserRequest) (*GetAuthUserResponse, error)
 	mustEmbedUnimplementedAuthServiceServer()
 }
 
@@ -111,8 +111,8 @@ func (UnimplementedAuthServiceServer) Login(context.Context, *LoginRequest) (*Lo
 func (UnimplementedAuthServiceServer) Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Logout not implemented")
 }
-func (UnimplementedAuthServiceServer) GetCurrentUser(context.Context, *GetCurrentUserRequest) (*GetCurrentUserResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetCurrentUser not implemented")
+func (UnimplementedAuthServiceServer) GetAuthUser(context.Context, *GetAuthUserRequest) (*GetAuthUserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAuthUser not implemented")
 }
 func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
 func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
@@ -189,20 +189,20 @@ func _AuthService_Logout_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GetCurrentUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetCurrentUserRequest)
+func _AuthService_GetAuthUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetCurrentUser(ctx, in)
+		return srv.(AuthServiceServer).GetAuthUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetCurrentUser_FullMethodName,
+		FullMethod: AuthService_GetAuthUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetCurrentUser(ctx, req.(*GetCurrentUserRequest))
+		return srv.(AuthServiceServer).GetAuthUser(ctx, req.(*GetAuthUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -227,8 +227,8 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AuthService_Logout_Handler,
 		},
 		{
-			MethodName: "GetCurrentUser",
-			Handler:    _AuthService_GetCurrentUser_Handler,
+			MethodName: "GetAuthUser",
+			Handler:    _AuthService_GetAuthUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

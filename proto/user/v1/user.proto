@@ -7,5 +7,4 @@ option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/
 message User {
   string id = 1;
   string email = 2;
-  string password = 3;
 }
