@@ -7,9 +7,51 @@ import "google/protobuf/empty.proto";
 option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/session/v1;sessionv1";
 
 service SessionService {
+  rpc GetSessions(GetSessionsRequest) returns(GetSessionsResponse);
+
   rpc DestroySession(DestroySessionRequest) returns(google.protobuf.Empty);
 }
 
 message DestroySessionRequest {
   string session_id = 1;
+}
+
+message GetSessionsRequest {
+  string user_id = 1;
+}
+
+message GetSessionsResponse {
+  SessionMetadata current_session = 1;
+  repeated SessionMetadata sessions = 2;
+}
+
+message SessionMetadata {
+  Client client = 1;
+  Device device = 2;
+  OS os = 3;
+  Location location = 4;
+  string created_at = 5;
+}
+
+message Client {
+  string type = 1;
+  string name = 2;
+  string version = 3;
+}
+
+message Device {
+  string type = 1;
+}
+
+message OS {
+  string name = 1;
+  string version = 2;
+  string platform = 3;
+}
+
+message Location {
+  string ip = 1;
+  string city = 2;
+  string country = 3;
+  string timezone = 4;
 }

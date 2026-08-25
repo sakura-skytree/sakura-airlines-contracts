@@ -8,6 +8,7 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 import { Empty } from "../../google/protobuf/empty";
+import { SessionMetadata } from "../../session/v1/session";
 import { User } from "../../user/v1/user";
 
 export const protobufPackage = "auth.v1";
@@ -45,36 +46,6 @@ export interface GetAuthUserRequest {
 export interface GetAuthUserResponse {
   user?: User | undefined;
   ok: boolean;
-}
-
-export interface SessionMetadata {
-  client?: Client | undefined;
-  device?: Device | undefined;
-  os?: OS | undefined;
-  location?: Location | undefined;
-}
-
-export interface Client {
-  type: string;
-  name: string;
-  version: string;
-}
-
-export interface Device {
-  type: string;
-}
-
-export interface OS {
-  name: string;
-  version: string;
-  platform: string;
-}
-
-export interface Location {
-  ip: string;
-  city: string;
-  country: string;
-  timezone: string;
 }
 
 export const AUTH_V1_PACKAGE_NAME = "auth.v1";
