@@ -66,6 +66,410 @@ func (x *DestroySessionRequest) GetSessionId() string {
 	return ""
 }
 
+type GetSessionsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSessionsRequest) Reset() {
+	*x = GetSessionsRequest{}
+	mi := &file_session_v1_session_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSessionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSessionsRequest) ProtoMessage() {}
+
+func (x *GetSessionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_v1_session_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSessionsRequest.ProtoReflect.Descriptor instead.
+func (*GetSessionsRequest) Descriptor() ([]byte, []int) {
+	return file_session_v1_session_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetSessionsRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetSessionsResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	CurrentSession *SessionMetadata       `protobuf:"bytes,1,opt,name=current_session,json=currentSession,proto3" json:"current_session,omitempty"`
+	Sessions       []*SessionMetadata     `protobuf:"bytes,2,rep,name=sessions,proto3" json:"sessions,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *GetSessionsResponse) Reset() {
+	*x = GetSessionsResponse{}
+	mi := &file_session_v1_session_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSessionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSessionsResponse) ProtoMessage() {}
+
+func (x *GetSessionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_session_v1_session_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSessionsResponse.ProtoReflect.Descriptor instead.
+func (*GetSessionsResponse) Descriptor() ([]byte, []int) {
+	return file_session_v1_session_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetSessionsResponse) GetCurrentSession() *SessionMetadata {
+	if x != nil {
+		return x.CurrentSession
+	}
+	return nil
+}
+
+func (x *GetSessionsResponse) GetSessions() []*SessionMetadata {
+	if x != nil {
+		return x.Sessions
+	}
+	return nil
+}
+
+type SessionMetadata struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Client        *Client                `protobuf:"bytes,1,opt,name=client,proto3" json:"client,omitempty"`
+	Device        *Device                `protobuf:"bytes,2,opt,name=device,proto3" json:"device,omitempty"`
+	Os            *OS                    `protobuf:"bytes,3,opt,name=os,proto3" json:"os,omitempty"`
+	Location      *Location              `protobuf:"bytes,4,opt,name=location,proto3" json:"location,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SessionMetadata) Reset() {
+	*x = SessionMetadata{}
+	mi := &file_session_v1_session_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SessionMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SessionMetadata) ProtoMessage() {}
+
+func (x *SessionMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_session_v1_session_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SessionMetadata.ProtoReflect.Descriptor instead.
+func (*SessionMetadata) Descriptor() ([]byte, []int) {
+	return file_session_v1_session_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SessionMetadata) GetClient() *Client {
+	if x != nil {
+		return x.Client
+	}
+	return nil
+}
+
+func (x *SessionMetadata) GetDevice() *Device {
+	if x != nil {
+		return x.Device
+	}
+	return nil
+}
+
+func (x *SessionMetadata) GetOs() *OS {
+	if x != nil {
+		return x.Os
+	}
+	return nil
+}
+
+func (x *SessionMetadata) GetLocation() *Location {
+	if x != nil {
+		return x.Location
+	}
+	return nil
+}
+
+func (x *SessionMetadata) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+type Client struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Version       string                 `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Client) Reset() {
+	*x = Client{}
+	mi := &file_session_v1_session_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Client) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Client) ProtoMessage() {}
+
+func (x *Client) ProtoReflect() protoreflect.Message {
+	mi := &file_session_v1_session_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Client.ProtoReflect.Descriptor instead.
+func (*Client) Descriptor() ([]byte, []int) {
+	return file_session_v1_session_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Client) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Client) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Client) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+type Device struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Device) Reset() {
+	*x = Device{}
+	mi := &file_session_v1_session_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Device) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Device) ProtoMessage() {}
+
+func (x *Device) ProtoReflect() protoreflect.Message {
+	mi := &file_session_v1_session_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Device.ProtoReflect.Descriptor instead.
+func (*Device) Descriptor() ([]byte, []int) {
+	return file_session_v1_session_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Device) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type OS struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Version       string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OS) Reset() {
+	*x = OS{}
+	mi := &file_session_v1_session_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OS) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OS) ProtoMessage() {}
+
+func (x *OS) ProtoReflect() protoreflect.Message {
+	mi := &file_session_v1_session_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OS.ProtoReflect.Descriptor instead.
+func (*OS) Descriptor() ([]byte, []int) {
+	return file_session_v1_session_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *OS) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *OS) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *OS) GetPlatform() string {
+	if x != nil {
+		return x.Platform
+	}
+	return ""
+}
+
+type Location struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ip            string                 `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	City          string                 `protobuf:"bytes,2,opt,name=city,proto3" json:"city,omitempty"`
+	Country       string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
+	Timezone      string                 `protobuf:"bytes,4,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Location) Reset() {
+	*x = Location{}
+	mi := &file_session_v1_session_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Location) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Location) ProtoMessage() {}
+
+func (x *Location) ProtoReflect() protoreflect.Message {
+	mi := &file_session_v1_session_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Location.ProtoReflect.Descriptor instead.
+func (*Location) Descriptor() ([]byte, []int) {
+	return file_session_v1_session_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *Location) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
+func (x *Location) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *Location) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *Location) GetTimezone() string {
+	if x != nil {
+		return x.Timezone
+	}
+	return ""
+}
+
 var File_session_v1_session_proto protoreflect.FileDescriptor
 
 const file_session_v1_session_proto_rawDesc = "" +
@@ -74,8 +478,36 @@ const file_session_v1_session_proto_rawDesc = "" +
 	"session.v1\x1a\x1bgoogle/protobuf/empty.proto\"6\n" +
 	"\x15DestroySessionRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId2]\n" +
-	"\x0eSessionService\x12K\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"-\n" +
+	"\x12GetSessionsRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x94\x01\n" +
+	"\x13GetSessionsResponse\x12D\n" +
+	"\x0fcurrent_session\x18\x01 \x01(\v2\x1b.session.v1.SessionMetadataR\x0ecurrentSession\x127\n" +
+	"\bsessions\x18\x02 \x03(\v2\x1b.session.v1.SessionMetadataR\bsessions\"\xda\x01\n" +
+	"\x0fSessionMetadata\x12*\n" +
+	"\x06client\x18\x01 \x01(\v2\x12.session.v1.ClientR\x06client\x12*\n" +
+	"\x06device\x18\x02 \x01(\v2\x12.session.v1.DeviceR\x06device\x12\x1e\n" +
+	"\x02os\x18\x03 \x01(\v2\x0e.session.v1.OSR\x02os\x120\n" +
+	"\blocation\x18\x04 \x01(\v2\x14.session.v1.LocationR\blocation\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x05 \x01(\tR\tcreatedAt\"J\n" +
+	"\x06Client\x12\x12\n" +
+	"\x04type\x18\x01 \x01(\tR\x04type\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x03 \x01(\tR\aversion\"\x1c\n" +
+	"\x06Device\x12\x12\n" +
+	"\x04type\x18\x01 \x01(\tR\x04type\"N\n" +
+	"\x02OS\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x02 \x01(\tR\aversion\x12\x1a\n" +
+	"\bplatform\x18\x03 \x01(\tR\bplatform\"d\n" +
+	"\bLocation\x12\x0e\n" +
+	"\x02ip\x18\x01 \x01(\tR\x02ip\x12\x12\n" +
+	"\x04city\x18\x02 \x01(\tR\x04city\x12\x18\n" +
+	"\acountry\x18\x03 \x01(\tR\acountry\x12\x1a\n" +
+	"\btimezone\x18\x04 \x01(\tR\btimezone2\xad\x01\n" +
+	"\x0eSessionService\x12N\n" +
+	"\vGetSessions\x12\x1e.session.v1.GetSessionsRequest\x1a\x1f.session.v1.GetSessionsResponse\x12K\n" +
 	"\x0eDestroySession\x12!.session.v1.DestroySessionRequest\x1a\x16.google.protobuf.EmptyBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/session/v1;sessionv1b\x06proto3"
 
 var (
@@ -90,19 +522,34 @@ func file_session_v1_session_proto_rawDescGZIP() []byte {
 	return file_session_v1_session_proto_rawDescData
 }
 
-var file_session_v1_session_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_session_v1_session_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_session_v1_session_proto_goTypes = []any{
 	(*DestroySessionRequest)(nil), // 0: session.v1.DestroySessionRequest
-	(*emptypb.Empty)(nil),         // 1: google.protobuf.Empty
+	(*GetSessionsRequest)(nil),    // 1: session.v1.GetSessionsRequest
+	(*GetSessionsResponse)(nil),   // 2: session.v1.GetSessionsResponse
+	(*SessionMetadata)(nil),       // 3: session.v1.SessionMetadata
+	(*Client)(nil),                // 4: session.v1.Client
+	(*Device)(nil),                // 5: session.v1.Device
+	(*OS)(nil),                    // 6: session.v1.OS
+	(*Location)(nil),              // 7: session.v1.Location
+	(*emptypb.Empty)(nil),         // 8: google.protobuf.Empty
 }
 var file_session_v1_session_proto_depIdxs = []int32{
-	0, // 0: session.v1.SessionService.DestroySession:input_type -> session.v1.DestroySessionRequest
-	1, // 1: session.v1.SessionService.DestroySession:output_type -> google.protobuf.Empty
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	3, // 0: session.v1.GetSessionsResponse.current_session:type_name -> session.v1.SessionMetadata
+	3, // 1: session.v1.GetSessionsResponse.sessions:type_name -> session.v1.SessionMetadata
+	4, // 2: session.v1.SessionMetadata.client:type_name -> session.v1.Client
+	5, // 3: session.v1.SessionMetadata.device:type_name -> session.v1.Device
+	6, // 4: session.v1.SessionMetadata.os:type_name -> session.v1.OS
+	7, // 5: session.v1.SessionMetadata.location:type_name -> session.v1.Location
+	1, // 6: session.v1.SessionService.GetSessions:input_type -> session.v1.GetSessionsRequest
+	0, // 7: session.v1.SessionService.DestroySession:input_type -> session.v1.DestroySessionRequest
+	2, // 8: session.v1.SessionService.GetSessions:output_type -> session.v1.GetSessionsResponse
+	8, // 9: session.v1.SessionService.DestroySession:output_type -> google.protobuf.Empty
+	8, // [8:10] is the sub-list for method output_type
+	6, // [6:8] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_session_v1_session_proto_init() }
@@ -116,7 +563,7 @@ func file_session_v1_session_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_session_v1_session_proto_rawDesc), len(file_session_v1_session_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

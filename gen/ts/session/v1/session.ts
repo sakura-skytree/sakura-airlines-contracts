@@ -15,19 +15,65 @@ export interface DestroySessionRequest {
   sessionId: string;
 }
 
+export interface GetSessionsRequest {
+  userId: string;
+}
+
+export interface GetSessionsResponse {
+  currentSession?: SessionMetadata | undefined;
+  sessions: SessionMetadata[];
+}
+
+export interface SessionMetadata {
+  client?: Client | undefined;
+  device?: Device | undefined;
+  os?: OS | undefined;
+  location?: Location | undefined;
+  createdAt: string;
+}
+
+export interface Client {
+  type: string;
+  name: string;
+  version: string;
+}
+
+export interface Device {
+  type: string;
+}
+
+export interface OS {
+  name: string;
+  version: string;
+  platform: string;
+}
+
+export interface Location {
+  ip: string;
+  city: string;
+  country: string;
+  timezone: string;
+}
+
 export const SESSION_V1_PACKAGE_NAME = "session.v1";
 
 export interface SessionServiceClient {
+  getSessions(request: GetSessionsRequest): Observable<GetSessionsResponse>;
+
   destroySession(request: DestroySessionRequest): Observable<Empty>;
 }
 
 export interface SessionServiceController {
+  getSessions(
+    request: GetSessionsRequest,
+  ): Promise<GetSessionsResponse> | Observable<GetSessionsResponse> | GetSessionsResponse;
+
   destroySession(request: DestroySessionRequest): void | Promise<void>;
 }
 
 export function SessionServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["destroySession"];
+    const grpcMethods: string[] = ["getSessions", "destroySession"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("SessionService", method)(constructor.prototype[method], method, descriptor);

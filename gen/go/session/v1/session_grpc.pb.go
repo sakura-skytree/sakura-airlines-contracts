@@ -20,6 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	SessionService_GetSessions_FullMethodName    = "/session.v1.SessionService/GetSessions"
 	SessionService_DestroySession_FullMethodName = "/session.v1.SessionService/DestroySession"
 )
 
@@ -27,6 +28,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SessionServiceClient interface {
+	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error)
 	DestroySession(ctx context.Context, in *DestroySessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -36,6 +38,16 @@ type sessionServiceClient struct {
 
 func NewSessionServiceClient(cc grpc.ClientConnInterface) SessionServiceClient {
 	return &sessionServiceClient{cc}
+}
+
+func (c *sessionServiceClient) GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*GetSessionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSessionsResponse)
+	err := c.cc.Invoke(ctx, SessionService_GetSessions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *sessionServiceClient) DestroySession(ctx context.Context, in *DestroySessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
@@ -52,6 +64,7 @@ func (c *sessionServiceClient) DestroySession(ctx context.Context, in *DestroySe
 // All implementations must embed UnimplementedSessionServiceServer
 // for forward compatibility.
 type SessionServiceServer interface {
+	GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error)
 	DestroySession(context.Context, *DestroySessionRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedSessionServiceServer()
 }
@@ -63,6 +76,9 @@ type SessionServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedSessionServiceServer struct{}
 
+func (UnimplementedSessionServiceServer) GetSessions(context.Context, *GetSessionsRequest) (*GetSessionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSessions not implemented")
+}
 func (UnimplementedSessionServiceServer) DestroySession(context.Context, *DestroySessionRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DestroySession not implemented")
 }
@@ -85,6 +101,24 @@ func RegisterSessionServiceServer(s grpc.ServiceRegistrar, srv SessionServiceSer
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&SessionService_ServiceDesc, srv)
+}
+
+func _SessionService_GetSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSessionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SessionServiceServer).GetSessions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SessionService_GetSessions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SessionServiceServer).GetSessions(ctx, req.(*GetSessionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _SessionService_DestroySession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -112,6 +146,10 @@ var SessionService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "session.v1.SessionService",
 	HandlerType: (*SessionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetSessions",
+			Handler:    _SessionService_GetSessions_Handler,
+		},
 		{
 			MethodName: "DestroySession",
 			Handler:    _SessionService_DestroySession_Handler,
