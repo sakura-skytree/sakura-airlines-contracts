@@ -46,5 +46,6 @@ message GetAuthUserRequest {
 }
 
 message GetAuthUserResponse {
- user.v1.User user = 1;
+  user.v1.User user = 1;
+  bool ok = 2;
 }
