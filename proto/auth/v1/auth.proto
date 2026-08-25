@@ -20,6 +20,7 @@ service AuthService {
 message RegisterRequest {
   string email = 1;
   string password = 2;
+  SessionMetadata session_metadata = 3;
 }
 
 message RegisterResponse {
@@ -30,6 +31,7 @@ message RegisterResponse {
 message LoginRequest {
   string email = 1;
   string password = 2;
+  SessionMetadata session_metadata = 3;
 }
 
 message LoginResponse {
@@ -48,4 +50,34 @@ message GetAuthUserRequest {
 message GetAuthUserResponse {
   optional user.v1.User user = 1;
   bool ok = 2;
+}
+
+message SessionMetadata {
+  Client client = 1;
+  Device device = 2;
+  OS os = 3;
+  Location location = 4;
+}
+
+message Client {
+  string type = 1;
+  string name = 2;
+  string version = 3;
+}
+
+message Device {
+  string type = 1;
+}
+
+message OS {
+  string name = 1;
+  string version = 2;
+  string platform = 3;
+}
+
+message Location {
+  string ip = 1;
+  string city = 2;
+  string country = 3;
+  string timezone = 4;
 }
