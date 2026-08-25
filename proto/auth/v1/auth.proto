@@ -14,7 +14,7 @@ service AuthService {
 
   rpc Logout(LogoutRequest) returns(google.protobuf.Empty);
 
-  rpc GetCurrentUser(GetCurrentUserRequest) returns(GetCurrentUserResponse);
+  rpc GetAuthUser(GetAuthUserRequest) returns(GetAuthUserResponse);
 }
 
 message RegisterRequest {
@@ -41,10 +41,10 @@ message LogoutRequest {
   string session_id = 1;
 }
 
-message GetCurrentUserRequest {
+message GetAuthUserRequest {
  string session_id = 1;
 }
 
-message GetCurrentUserResponse {
+message GetAuthUserResponse {
  user.v1.User user = 1;
 }
