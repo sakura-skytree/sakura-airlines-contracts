@@ -321,7 +321,7 @@ func (x *GetAuthUserRequest) GetSessionId() string {
 
 type GetAuthUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *v1.User               `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	User          *v1.User               `protobuf:"bytes,1,opt,name=user,proto3,oneof" json:"user,omitempty"`
 	Ok            bool                   `protobuf:"varint,2,opt,name=ok,proto3" json:"ok,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -395,10 +395,11 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\"3\n" +
 	"\x12GetAuthUserRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\"H\n" +
-	"\x13GetAuthUserResponse\x12!\n" +
-	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\x12\x0e\n" +
-	"\x02ok\x18\x02 \x01(\bR\x02ok2\x8a\x02\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"V\n" +
+	"\x13GetAuthUserResponse\x12&\n" +
+	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserH\x00R\x04user\x88\x01\x01\x12\x0e\n" +
+	"\x02ok\x18\x02 \x01(\bR\x02okB\a\n" +
+	"\x05_user2\x8a\x02\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x128\n" +
@@ -453,6 +454,7 @@ func file_auth_v1_auth_proto_init() {
 	if File_auth_v1_auth_proto != nil {
 		return
 	}
+	file_auth_v1_auth_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
