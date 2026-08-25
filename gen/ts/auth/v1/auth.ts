@@ -42,6 +42,7 @@ export interface GetAuthUserRequest {
 
 export interface GetAuthUserResponse {
   user?: User | undefined;
+  ok: boolean;
 }
 
 export const AUTH_V1_PACKAGE_NAME = "auth.v1";

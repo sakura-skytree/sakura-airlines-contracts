@@ -322,6 +322,7 @@ func (x *GetAuthUserRequest) GetSessionId() string {
 type GetAuthUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User          *v1.User               `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	Ok            bool                   `protobuf:"varint,2,opt,name=ok,proto3" json:"ok,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -363,6 +364,13 @@ func (x *GetAuthUserResponse) GetUser() *v1.User {
 	return nil
 }
 
+func (x *GetAuthUserResponse) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
 var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
@@ -387,9 +395,10 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\"3\n" +
 	"\x12GetAuthUserRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\"8\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"H\n" +
 	"\x13GetAuthUserResponse\x12!\n" +
-	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user2\x8a\x02\n" +
+	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\x12\x0e\n" +
+	"\x02ok\x18\x02 \x01(\bR\x02ok2\x8a\x02\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x128\n" +
