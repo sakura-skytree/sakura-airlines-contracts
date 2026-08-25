@@ -15,6 +15,7 @@ export const protobufPackage = "auth.v1";
 export interface RegisterRequest {
   email: string;
   password: string;
+  sessionMetadata?: SessionMetadata | undefined;
 }
 
 export interface RegisterResponse {
@@ -25,6 +26,7 @@ export interface RegisterResponse {
 export interface LoginRequest {
   email: string;
   password: string;
+  sessionMetadata?: SessionMetadata | undefined;
 }
 
 export interface LoginResponse {
@@ -43,6 +45,36 @@ export interface GetAuthUserRequest {
 export interface GetAuthUserResponse {
   user?: User | undefined;
   ok: boolean;
+}
+
+export interface SessionMetadata {
+  client?: Client | undefined;
+  device?: Device | undefined;
+  os?: OS | undefined;
+  location?: Location | undefined;
+}
+
+export interface Client {
+  type: string;
+  name: string;
+  version: string;
+}
+
+export interface Device {
+  type: string;
+}
+
+export interface OS {
+  name: string;
+  version: string;
+  platform: string;
+}
+
+export interface Location {
+  ip: string;
+  city: string;
+  country: string;
+  timezone: string;
 }
 
 export const AUTH_V1_PACKAGE_NAME = "auth.v1";

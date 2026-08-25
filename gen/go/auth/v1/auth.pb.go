@@ -24,11 +24,12 @@ const (
 )
 
 type RegisterRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Email           string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Password        string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	SessionMetadata *SessionMetadata       `protobuf:"bytes,3,opt,name=session_metadata,json=sessionMetadata,proto3" json:"session_metadata,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *RegisterRequest) Reset() {
@@ -73,6 +74,13 @@ func (x *RegisterRequest) GetPassword() string {
 		return x.Password
 	}
 	return ""
+}
+
+func (x *RegisterRequest) GetSessionMetadata() *SessionMetadata {
+	if x != nil {
+		return x.SessionMetadata
+	}
+	return nil
 }
 
 type RegisterResponse struct {
@@ -128,11 +136,12 @@ func (x *RegisterResponse) GetSessionId() string {
 }
 
 type LoginRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Email           string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	Password        string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	SessionMetadata *SessionMetadata       `protobuf:"bytes,3,opt,name=session_metadata,json=sessionMetadata,proto3" json:"session_metadata,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *LoginRequest) Reset() {
@@ -177,6 +186,13 @@ func (x *LoginRequest) GetPassword() string {
 		return x.Password
 	}
 	return ""
+}
+
+func (x *LoginRequest) GetSessionMetadata() *SessionMetadata {
+	if x != nil {
+		return x.SessionMetadata
+	}
+	return nil
 }
 
 type LoginResponse struct {
@@ -371,21 +387,323 @@ func (x *GetAuthUserResponse) GetOk() bool {
 	return false
 }
 
+type SessionMetadata struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Client        *Client                `protobuf:"bytes,1,opt,name=client,proto3" json:"client,omitempty"`
+	Device        *Device                `protobuf:"bytes,2,opt,name=device,proto3" json:"device,omitempty"`
+	Os            *OS                    `protobuf:"bytes,3,opt,name=os,proto3" json:"os,omitempty"`
+	Location      *Location              `protobuf:"bytes,4,opt,name=location,proto3" json:"location,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SessionMetadata) Reset() {
+	*x = SessionMetadata{}
+	mi := &file_auth_v1_auth_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SessionMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SessionMetadata) ProtoMessage() {}
+
+func (x *SessionMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SessionMetadata.ProtoReflect.Descriptor instead.
+func (*SessionMetadata) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SessionMetadata) GetClient() *Client {
+	if x != nil {
+		return x.Client
+	}
+	return nil
+}
+
+func (x *SessionMetadata) GetDevice() *Device {
+	if x != nil {
+		return x.Device
+	}
+	return nil
+}
+
+func (x *SessionMetadata) GetOs() *OS {
+	if x != nil {
+		return x.Os
+	}
+	return nil
+}
+
+func (x *SessionMetadata) GetLocation() *Location {
+	if x != nil {
+		return x.Location
+	}
+	return nil
+}
+
+type Client struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Version       string                 `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Client) Reset() {
+	*x = Client{}
+	mi := &file_auth_v1_auth_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Client) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Client) ProtoMessage() {}
+
+func (x *Client) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Client.ProtoReflect.Descriptor instead.
+func (*Client) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *Client) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+func (x *Client) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Client) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+type Device struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Device) Reset() {
+	*x = Device{}
+	mi := &file_auth_v1_auth_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Device) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Device) ProtoMessage() {}
+
+func (x *Device) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Device.ProtoReflect.Descriptor instead.
+func (*Device) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *Device) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
+}
+
+type OS struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Version       string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Platform      string                 `protobuf:"bytes,3,opt,name=platform,proto3" json:"platform,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OS) Reset() {
+	*x = OS{}
+	mi := &file_auth_v1_auth_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OS) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OS) ProtoMessage() {}
+
+func (x *OS) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OS.ProtoReflect.Descriptor instead.
+func (*OS) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *OS) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *OS) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *OS) GetPlatform() string {
+	if x != nil {
+		return x.Platform
+	}
+	return ""
+}
+
+type Location struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ip            string                 `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
+	City          string                 `protobuf:"bytes,2,opt,name=city,proto3" json:"city,omitempty"`
+	Country       string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
+	Timezone      string                 `protobuf:"bytes,4,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Location) Reset() {
+	*x = Location{}
+	mi := &file_auth_v1_auth_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Location) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Location) ProtoMessage() {}
+
+func (x *Location) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Location.ProtoReflect.Descriptor instead.
+func (*Location) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *Location) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
+func (x *Location) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *Location) GetCountry() string {
+	if x != nil {
+		return x.Country
+	}
+	return ""
+}
+
+func (x *Location) GetTimezone() string {
+	if x != nil {
+		return x.Timezone
+	}
+	return ""
+}
+
 var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
 	"\n" +
-	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x12user/v1/user.proto\"C\n" +
+	"\x12auth/v1/auth.proto\x12\aauth.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x12user/v1/user.proto\"\x88\x01\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"T\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12C\n" +
+	"\x10session_metadata\x18\x03 \x01(\v2\x18.auth.v1.SessionMetadataR\x0fsessionMetadata\"T\n" +
 	"\x10RegisterResponse\x12!\n" +
 	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x02 \x01(\tR\tsessionId\"@\n" +
+	"session_id\x18\x02 \x01(\tR\tsessionId\"\x85\x01\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"Q\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12C\n" +
+	"\x10session_metadata\x18\x03 \x01(\v2\x18.auth.v1.SessionMetadataR\x0fsessionMetadata\"Q\n" +
 	"\rLoginResponse\x12!\n" +
 	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserR\x04user\x12\x1d\n" +
 	"\n" +
@@ -399,7 +717,27 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x13GetAuthUserResponse\x12&\n" +
 	"\x04user\x18\x01 \x01(\v2\r.user.v1.UserH\x00R\x04user\x88\x01\x01\x12\x0e\n" +
 	"\x02ok\x18\x02 \x01(\bR\x02okB\a\n" +
-	"\x05_user2\x8a\x02\n" +
+	"\x05_user\"\xaf\x01\n" +
+	"\x0fSessionMetadata\x12'\n" +
+	"\x06client\x18\x01 \x01(\v2\x0f.auth.v1.ClientR\x06client\x12'\n" +
+	"\x06device\x18\x02 \x01(\v2\x0f.auth.v1.DeviceR\x06device\x12\x1b\n" +
+	"\x02os\x18\x03 \x01(\v2\v.auth.v1.OSR\x02os\x12-\n" +
+	"\blocation\x18\x04 \x01(\v2\x11.auth.v1.LocationR\blocation\"J\n" +
+	"\x06Client\x12\x12\n" +
+	"\x04type\x18\x01 \x01(\tR\x04type\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x03 \x01(\tR\aversion\"\x1c\n" +
+	"\x06Device\x12\x12\n" +
+	"\x04type\x18\x01 \x01(\tR\x04type\"N\n" +
+	"\x02OS\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x02 \x01(\tR\aversion\x12\x1a\n" +
+	"\bplatform\x18\x03 \x01(\tR\bplatform\"d\n" +
+	"\bLocation\x12\x0e\n" +
+	"\x02ip\x18\x01 \x01(\tR\x02ip\x12\x12\n" +
+	"\x04city\x18\x02 \x01(\tR\x04city\x12\x18\n" +
+	"\acountry\x18\x03 \x01(\tR\acountry\x12\x1a\n" +
+	"\btimezone\x18\x04 \x01(\tR\btimezone2\x8a\x02\n" +
 	"\vAuthService\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x126\n" +
 	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x128\n" +
@@ -418,7 +756,7 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 	return file_auth_v1_auth_proto_rawDescData
 }
 
-var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_auth_v1_auth_proto_goTypes = []any{
 	(*RegisterRequest)(nil),     // 0: auth.v1.RegisterRequest
 	(*RegisterResponse)(nil),    // 1: auth.v1.RegisterResponse
@@ -427,26 +765,37 @@ var file_auth_v1_auth_proto_goTypes = []any{
 	(*LogoutRequest)(nil),       // 4: auth.v1.LogoutRequest
 	(*GetAuthUserRequest)(nil),  // 5: auth.v1.GetAuthUserRequest
 	(*GetAuthUserResponse)(nil), // 6: auth.v1.GetAuthUserResponse
-	(*v1.User)(nil),             // 7: user.v1.User
-	(*emptypb.Empty)(nil),       // 8: google.protobuf.Empty
+	(*SessionMetadata)(nil),     // 7: auth.v1.SessionMetadata
+	(*Client)(nil),              // 8: auth.v1.Client
+	(*Device)(nil),              // 9: auth.v1.Device
+	(*OS)(nil),                  // 10: auth.v1.OS
+	(*Location)(nil),            // 11: auth.v1.Location
+	(*v1.User)(nil),             // 12: user.v1.User
+	(*emptypb.Empty)(nil),       // 13: google.protobuf.Empty
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	7, // 0: auth.v1.RegisterResponse.user:type_name -> user.v1.User
-	7, // 1: auth.v1.LoginResponse.user:type_name -> user.v1.User
-	7, // 2: auth.v1.GetAuthUserResponse.user:type_name -> user.v1.User
-	0, // 3: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
-	2, // 4: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
-	4, // 5: auth.v1.AuthService.Logout:input_type -> auth.v1.LogoutRequest
-	5, // 6: auth.v1.AuthService.GetAuthUser:input_type -> auth.v1.GetAuthUserRequest
-	1, // 7: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
-	3, // 8: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
-	8, // 9: auth.v1.AuthService.Logout:output_type -> google.protobuf.Empty
-	6, // 10: auth.v1.AuthService.GetAuthUser:output_type -> auth.v1.GetAuthUserResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	7,  // 0: auth.v1.RegisterRequest.session_metadata:type_name -> auth.v1.SessionMetadata
+	12, // 1: auth.v1.RegisterResponse.user:type_name -> user.v1.User
+	7,  // 2: auth.v1.LoginRequest.session_metadata:type_name -> auth.v1.SessionMetadata
+	12, // 3: auth.v1.LoginResponse.user:type_name -> user.v1.User
+	12, // 4: auth.v1.GetAuthUserResponse.user:type_name -> user.v1.User
+	8,  // 5: auth.v1.SessionMetadata.client:type_name -> auth.v1.Client
+	9,  // 6: auth.v1.SessionMetadata.device:type_name -> auth.v1.Device
+	10, // 7: auth.v1.SessionMetadata.os:type_name -> auth.v1.OS
+	11, // 8: auth.v1.SessionMetadata.location:type_name -> auth.v1.Location
+	0,  // 9: auth.v1.AuthService.Register:input_type -> auth.v1.RegisterRequest
+	2,  // 10: auth.v1.AuthService.Login:input_type -> auth.v1.LoginRequest
+	4,  // 11: auth.v1.AuthService.Logout:input_type -> auth.v1.LogoutRequest
+	5,  // 12: auth.v1.AuthService.GetAuthUser:input_type -> auth.v1.GetAuthUserRequest
+	1,  // 13: auth.v1.AuthService.Register:output_type -> auth.v1.RegisterResponse
+	3,  // 14: auth.v1.AuthService.Login:output_type -> auth.v1.LoginResponse
+	13, // 15: auth.v1.AuthService.Logout:output_type -> google.protobuf.Empty
+	6,  // 16: auth.v1.AuthService.GetAuthUser:output_type -> auth.v1.GetAuthUserResponse
+	13, // [13:17] is the sub-list for method output_type
+	9,  // [9:13] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_auth_proto_init() }
@@ -461,7 +810,7 @@ func file_auth_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_auth_proto_rawDesc), len(file_auth_v1_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
