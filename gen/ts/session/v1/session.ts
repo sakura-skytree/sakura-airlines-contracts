@@ -17,6 +17,7 @@ export interface DestroySessionRequest {
 
 export interface GetSessionsRequest {
   userId: string;
+  currentSessionId: string;
 }
 
 export interface GetSessionsResponse {

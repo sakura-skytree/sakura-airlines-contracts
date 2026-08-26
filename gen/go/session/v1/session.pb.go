@@ -67,10 +67,11 @@ func (x *DestroySessionRequest) GetSessionId() string {
 }
 
 type GetSessionsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	UserId           string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	CurrentSessionId string                 `protobuf:"bytes,2,opt,name=current_session_id,json=currentSessionId,proto3" json:"current_session_id,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *GetSessionsRequest) Reset() {
@@ -106,6 +107,13 @@ func (*GetSessionsRequest) Descriptor() ([]byte, []int) {
 func (x *GetSessionsRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetSessionsRequest) GetCurrentSessionId() string {
+	if x != nil {
+		return x.CurrentSessionId
 	}
 	return ""
 }
@@ -486,9 +494,10 @@ const file_session_v1_session_proto_rawDesc = "" +
 	"session.v1\x1a\x1bgoogle/protobuf/empty.proto\"6\n" +
 	"\x15DestroySessionRequest\x12\x1d\n" +
 	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\"-\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\"[\n" +
 	"\x12GetSessionsRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x94\x01\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12,\n" +
+	"\x12current_session_id\x18\x02 \x01(\tR\x10currentSessionId\"\x94\x01\n" +
 	"\x13GetSessionsResponse\x12D\n" +
 	"\x0fcurrent_session\x18\x01 \x01(\v2\x1b.session.v1.SessionMetadataR\x0ecurrentSession\x127\n" +
 	"\bsessions\x18\x02 \x03(\v2\x1b.session.v1.SessionMetadataR\bsessions\"\xf3\x01\n" +
