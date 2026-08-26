@@ -21,8 +21,13 @@ export interface GetSessionsRequest {
 }
 
 export interface GetSessionsResponse {
-  currentSession?: SessionMetadata | undefined;
-  sessions: SessionMetadata[];
+  currentSession?: SessionWithId | undefined;
+  sessions: SessionWithId[];
+}
+
+export interface SessionWithId {
+  id: string;
+  session?: SessionMetadata | undefined;
 }
 
 export interface SessionMetadata {

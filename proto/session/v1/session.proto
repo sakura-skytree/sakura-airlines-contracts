@@ -22,8 +22,13 @@ message GetSessionsRequest {
 }
 
 message GetSessionsResponse {
-  SessionMetadata current_session = 1;
-  repeated SessionMetadata sessions = 2;
+  SessionWithId current_session = 1;
+  repeated SessionWithId sessions = 2;
+}
+
+message SessionWithId {
+  string id = 1;
+  SessionMetadata session = 2;
 }
 
 message SessionMetadata {
