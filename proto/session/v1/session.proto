@@ -18,6 +18,7 @@ message DestroySessionRequest {
 
 message GetSessionsRequest {
   string user_id = 1;
+  string current_session_id = 2;
 }
 
 message GetSessionsResponse {
