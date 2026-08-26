@@ -13,6 +13,7 @@ export const protobufPackage = "session.v1";
 
 export interface DestroySessionRequest {
   sessionId: string;
+  userId: string;
 }
 
 export interface GetSessionsRequest {
