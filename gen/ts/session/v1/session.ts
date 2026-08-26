@@ -30,6 +30,7 @@ export interface SessionMetadata {
   os?: OS | undefined;
   location?: Location | undefined;
   createdAt: string;
+  userId: string;
 }
 
 export interface Client {
