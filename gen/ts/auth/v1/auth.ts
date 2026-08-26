@@ -37,6 +37,7 @@ export interface LoginResponse {
 
 export interface LogoutRequest {
   sessionId: string;
+  userId: string;
 }
 
 export interface GetAuthUserRequest {

@@ -42,6 +42,7 @@ message LoginResponse {
 
 message LogoutRequest {
   string session_id = 1;
+  string user_id = 2;
 }
 
 message GetAuthUserRequest {
