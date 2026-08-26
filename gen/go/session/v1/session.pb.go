@@ -169,6 +169,7 @@ type SessionMetadata struct {
 	Os            *OS                    `protobuf:"bytes,3,opt,name=os,proto3" json:"os,omitempty"`
 	Location      *Location              `protobuf:"bytes,4,opt,name=location,proto3" json:"location,omitempty"`
 	CreatedAt     string                 `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UserId        string                 `protobuf:"bytes,6,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -234,6 +235,13 @@ func (x *SessionMetadata) GetLocation() *Location {
 func (x *SessionMetadata) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
+	}
+	return ""
+}
+
+func (x *SessionMetadata) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -483,14 +491,15 @@ const file_session_v1_session_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x94\x01\n" +
 	"\x13GetSessionsResponse\x12D\n" +
 	"\x0fcurrent_session\x18\x01 \x01(\v2\x1b.session.v1.SessionMetadataR\x0ecurrentSession\x127\n" +
-	"\bsessions\x18\x02 \x03(\v2\x1b.session.v1.SessionMetadataR\bsessions\"\xda\x01\n" +
+	"\bsessions\x18\x02 \x03(\v2\x1b.session.v1.SessionMetadataR\bsessions\"\xf3\x01\n" +
 	"\x0fSessionMetadata\x12*\n" +
 	"\x06client\x18\x01 \x01(\v2\x12.session.v1.ClientR\x06client\x12*\n" +
 	"\x06device\x18\x02 \x01(\v2\x12.session.v1.DeviceR\x06device\x12\x1e\n" +
 	"\x02os\x18\x03 \x01(\v2\x0e.session.v1.OSR\x02os\x120\n" +
 	"\blocation\x18\x04 \x01(\v2\x14.session.v1.LocationR\blocation\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\tR\tcreatedAt\"J\n" +
+	"created_at\x18\x05 \x01(\tR\tcreatedAt\x12\x17\n" +
+	"\auser_id\x18\x06 \x01(\tR\x06userId\"J\n" +
 	"\x06Client\x12\x12\n" +
 	"\x04type\x18\x01 \x01(\tR\x04type\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +

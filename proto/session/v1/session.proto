@@ -31,6 +31,7 @@ message SessionMetadata {
   OS os = 3;
   Location location = 4;
   string created_at = 5;
+  string user_id = 6;
 }
 
 message Client {
