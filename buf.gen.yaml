@@ -22,3 +22,4 @@ plugins:
       - forceLong=long
       - useOptionals=messages
       - paths=source_relative
+      - useDate=true
