@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { wrappers } from "protobufjs";
 import { Observable } from "rxjs";
 import { Empty } from "../../google/protobuf/empty";
 
@@ -16,22 +17,22 @@ export interface Passenger {
   userId: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
+  dateOfBirth?: Date | undefined;
   gender: string;
   documentType: string;
   documentNumber: string;
-  documentExpiresAt: string;
+  documentExpiresAt?: Date | undefined;
 }
 
 export interface CreatePassengerRequest {
   userId: string;
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
+  dateOfBirth?: Date | undefined;
   gender: string;
   documentType: string;
   documentNumber: string;
-  documentExpiresAt: string;
+  documentExpiresAt?: Date | undefined;
 }
 
 export interface CreatePassengerResponse {
@@ -65,11 +66,11 @@ export interface UpdatePassengerRequest {
   userId: string;
   firstName?: string | undefined;
   lastName?: string | undefined;
-  dateOfBirth?: string | undefined;
+  dateOfBirth?: Date | undefined;
   gender?: string | undefined;
   documentType?: string | undefined;
   documentNumber?: string | undefined;
-  documentExpiresAt?: string | undefined;
+  documentExpiresAt?: Date | undefined;
 }
 
 export interface UpdatePassengerResponse {
@@ -77,6 +78,15 @@ export interface UpdatePassengerResponse {
 }
 
 export const PASSENGER_V1_PACKAGE_NAME = "passenger.v1";
+
+wrappers[".google.protobuf.Timestamp"] = {
+  fromObject(value: Date) {
+    return { seconds: value.getTime() / 1000, nanos: (value.getTime() % 1000) * 1e6 };
+  },
+  toObject(message: { seconds: number; nanos: number }) {
+    return new Date(message.seconds * 1000 + message.nanos / 1e6);
+  },
+} as any;
 
 export interface PassengerServiceClient {
   createPassenger(request: CreatePassengerRequest): Observable<CreatePassengerResponse>;

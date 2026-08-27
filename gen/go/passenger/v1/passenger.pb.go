@@ -10,7 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -29,11 +29,11 @@ type Passenger struct {
 	UserId            string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	FirstName         string                 `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName          string                 `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	DateOfBirth       string                 `protobuf:"bytes,5,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
+	DateOfBirth       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
 	Gender            string                 `protobuf:"bytes,6,opt,name=gender,proto3" json:"gender,omitempty"`
 	DocumentType      string                 `protobuf:"bytes,7,opt,name=document_type,json=documentType,proto3" json:"document_type,omitempty"`
 	DocumentNumber    string                 `protobuf:"bytes,8,opt,name=document_number,json=documentNumber,proto3" json:"document_number,omitempty"`
-	DocumentExpiresAt string                 `protobuf:"bytes,9,opt,name=document_expires_at,json=documentExpiresAt,proto3" json:"document_expires_at,omitempty"`
+	DocumentExpiresAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=document_expires_at,json=documentExpiresAt,proto3" json:"document_expires_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -96,11 +96,11 @@ func (x *Passenger) GetLastName() string {
 	return ""
 }
 
-func (x *Passenger) GetDateOfBirth() string {
+func (x *Passenger) GetDateOfBirth() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DateOfBirth
 	}
-	return ""
+	return nil
 }
 
 func (x *Passenger) GetGender() string {
@@ -124,11 +124,11 @@ func (x *Passenger) GetDocumentNumber() string {
 	return ""
 }
 
-func (x *Passenger) GetDocumentExpiresAt() string {
+func (x *Passenger) GetDocumentExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DocumentExpiresAt
 	}
-	return ""
+	return nil
 }
 
 type CreatePassengerRequest struct {
@@ -136,11 +136,11 @@ type CreatePassengerRequest struct {
 	UserId            string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	FirstName         string                 `protobuf:"bytes,2,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName          string                 `protobuf:"bytes,3,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	DateOfBirth       string                 `protobuf:"bytes,4,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
+	DateOfBirth       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
 	Gender            string                 `protobuf:"bytes,5,opt,name=gender,proto3" json:"gender,omitempty"`
 	DocumentType      string                 `protobuf:"bytes,6,opt,name=document_type,json=documentType,proto3" json:"document_type,omitempty"`
 	DocumentNumber    string                 `protobuf:"bytes,7,opt,name=document_number,json=documentNumber,proto3" json:"document_number,omitempty"`
-	DocumentExpiresAt string                 `protobuf:"bytes,8,opt,name=document_expires_at,json=documentExpiresAt,proto3" json:"document_expires_at,omitempty"`
+	DocumentExpiresAt *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=document_expires_at,json=documentExpiresAt,proto3" json:"document_expires_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -196,11 +196,11 @@ func (x *CreatePassengerRequest) GetLastName() string {
 	return ""
 }
 
-func (x *CreatePassengerRequest) GetDateOfBirth() string {
+func (x *CreatePassengerRequest) GetDateOfBirth() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DateOfBirth
 	}
-	return ""
+	return nil
 }
 
 func (x *CreatePassengerRequest) GetGender() string {
@@ -224,11 +224,11 @@ func (x *CreatePassengerRequest) GetDocumentNumber() string {
 	return ""
 }
 
-func (x *CreatePassengerRequest) GetDocumentExpiresAt() string {
+func (x *CreatePassengerRequest) GetDocumentExpiresAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.DocumentExpiresAt
 	}
-	return ""
+	return nil
 }
 
 type CreatePassengerResponse struct {
@@ -517,11 +517,11 @@ type UpdatePassengerRequest struct {
 	UserId            string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	FirstName         *string                `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
 	LastName          *string                `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	DateOfBirth       *string                `protobuf:"bytes,5,opt,name=date_of_birth,json=dateOfBirth,proto3,oneof" json:"date_of_birth,omitempty"`
+	DateOfBirth       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
 	Gender            *string                `protobuf:"bytes,6,opt,name=gender,proto3,oneof" json:"gender,omitempty"`
 	DocumentType      *string                `protobuf:"bytes,7,opt,name=document_type,json=documentType,proto3,oneof" json:"document_type,omitempty"`
 	DocumentNumber    *string                `protobuf:"bytes,8,opt,name=document_number,json=documentNumber,proto3,oneof" json:"document_number,omitempty"`
-	DocumentExpiresAt *string                `protobuf:"bytes,9,opt,name=document_expires_at,json=documentExpiresAt,proto3,oneof" json:"document_expires_at,omitempty"`
+	DocumentExpiresAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=document_expires_at,json=documentExpiresAt,proto3" json:"document_expires_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -584,11 +584,11 @@ func (x *UpdatePassengerRequest) GetLastName() string {
 	return ""
 }
 
-func (x *UpdatePassengerRequest) GetDateOfBirth() string {
-	if x != nil && x.DateOfBirth != nil {
-		return *x.DateOfBirth
+func (x *UpdatePassengerRequest) GetDateOfBirth() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DateOfBirth
 	}
-	return ""
+	return nil
 }
 
 func (x *UpdatePassengerRequest) GetGender() string {
@@ -612,11 +612,11 @@ func (x *UpdatePassengerRequest) GetDocumentNumber() string {
 	return ""
 }
 
-func (x *UpdatePassengerRequest) GetDocumentExpiresAt() string {
-	if x != nil && x.DocumentExpiresAt != nil {
-		return *x.DocumentExpiresAt
+func (x *UpdatePassengerRequest) GetDocumentExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DocumentExpiresAt
 	}
-	return ""
+	return nil
 }
 
 type UpdatePassengerResponse struct {
@@ -667,28 +667,28 @@ var File_passenger_v1_passenger_proto protoreflect.FileDescriptor
 
 const file_passenger_v1_passenger_proto_rawDesc = "" +
 	"\n" +
-	"\x1cpassenger/v1/passenger.proto\x12\fpassenger.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xaa\x02\n" +
+	"\x1cpassenger/v1/passenger.proto\x12\fpassenger.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"\xe2\x02\n" +
 	"\tPassenger\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x03 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x04 \x01(\tR\blastName\x12\"\n" +
-	"\rdate_of_birth\x18\x05 \x01(\tR\vdateOfBirth\x12\x16\n" +
+	"\tlast_name\x18\x04 \x01(\tR\blastName\x12>\n" +
+	"\rdate_of_birth\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12\x16\n" +
 	"\x06gender\x18\x06 \x01(\tR\x06gender\x12#\n" +
 	"\rdocument_type\x18\a \x01(\tR\fdocumentType\x12'\n" +
-	"\x0fdocument_number\x18\b \x01(\tR\x0edocumentNumber\x12.\n" +
-	"\x13document_expires_at\x18\t \x01(\tR\x11documentExpiresAt\"\xa7\x02\n" +
+	"\x0fdocument_number\x18\b \x01(\tR\x0edocumentNumber\x12J\n" +
+	"\x13document_expires_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\x11documentExpiresAt\"\xdf\x02\n" +
 	"\x16CreatePassengerRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\"\n" +
-	"\rdate_of_birth\x18\x04 \x01(\tR\vdateOfBirth\x12\x16\n" +
+	"\tlast_name\x18\x03 \x01(\tR\blastName\x12>\n" +
+	"\rdate_of_birth\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12\x16\n" +
 	"\x06gender\x18\x05 \x01(\tR\x06gender\x12#\n" +
 	"\rdocument_type\x18\x06 \x01(\tR\fdocumentType\x12'\n" +
-	"\x0fdocument_number\x18\a \x01(\tR\x0edocumentNumber\x12.\n" +
-	"\x13document_expires_at\x18\b \x01(\tR\x11documentExpiresAt\"P\n" +
+	"\x0fdocument_number\x18\a \x01(\tR\x0edocumentNumber\x12J\n" +
+	"\x13document_expires_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x11documentExpiresAt\"P\n" +
 	"\x17CreatePassengerResponse\x125\n" +
 	"\tpassenger\x18\x01 \x01(\v2\x17.passenger.v1.PassengerR\tpassenger\"/\n" +
 	"\x14GetPassengersRequest\x12\x17\n" +
@@ -704,26 +704,24 @@ const file_passenger_v1_passenger_proto_rawDesc = "" +
 	"\tpassenger\x18\x01 \x01(\v2\x17.passenger.v1.PassengerR\tpassenger\"A\n" +
 	"\x16DeletePassengerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xd2\x03\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xd6\x03\n" +
 	"\x16UpdatePassengerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\"\n" +
 	"\n" +
 	"first_name\x18\x03 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\x04 \x01(\tH\x01R\blastName\x88\x01\x01\x12'\n" +
-	"\rdate_of_birth\x18\x05 \x01(\tH\x02R\vdateOfBirth\x88\x01\x01\x12\x1b\n" +
-	"\x06gender\x18\x06 \x01(\tH\x03R\x06gender\x88\x01\x01\x12(\n" +
-	"\rdocument_type\x18\a \x01(\tH\x04R\fdocumentType\x88\x01\x01\x12,\n" +
-	"\x0fdocument_number\x18\b \x01(\tH\x05R\x0edocumentNumber\x88\x01\x01\x123\n" +
-	"\x13document_expires_at\x18\t \x01(\tH\x06R\x11documentExpiresAt\x88\x01\x01B\r\n" +
+	"\tlast_name\x18\x04 \x01(\tH\x01R\blastName\x88\x01\x01\x12>\n" +
+	"\rdate_of_birth\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12\x1b\n" +
+	"\x06gender\x18\x06 \x01(\tH\x02R\x06gender\x88\x01\x01\x12(\n" +
+	"\rdocument_type\x18\a \x01(\tH\x03R\fdocumentType\x88\x01\x01\x12,\n" +
+	"\x0fdocument_number\x18\b \x01(\tH\x04R\x0edocumentNumber\x88\x01\x01\x12J\n" +
+	"\x13document_expires_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\x11documentExpiresAtB\r\n" +
 	"\v_first_nameB\f\n" +
 	"\n" +
-	"_last_nameB\x10\n" +
-	"\x0e_date_of_birthB\t\n" +
+	"_last_nameB\t\n" +
 	"\a_genderB\x10\n" +
 	"\x0e_document_typeB\x12\n" +
-	"\x10_document_numberB\x16\n" +
-	"\x14_document_expires_at\"P\n" +
+	"\x10_document_number\"P\n" +
 	"\x17UpdatePassengerResponse\x125\n" +
 	"\tpassenger\x18\x01 \x01(\v2\x17.passenger.v1.PassengerR\tpassenger2\xd4\x03\n" +
 	"\x10PassengerService\x12^\n" +
@@ -757,28 +755,35 @@ var file_passenger_v1_passenger_proto_goTypes = []any{
 	(*DeletePassengerRequest)(nil),  // 7: passenger.v1.DeletePassengerRequest
 	(*UpdatePassengerRequest)(nil),  // 8: passenger.v1.UpdatePassengerRequest
 	(*UpdatePassengerResponse)(nil), // 9: passenger.v1.UpdatePassengerResponse
-	(*emptypb.Empty)(nil),           // 10: google.protobuf.Empty
+	(*timestamppb.Timestamp)(nil),   // 10: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),           // 11: google.protobuf.Empty
 }
 var file_passenger_v1_passenger_proto_depIdxs = []int32{
-	0,  // 0: passenger.v1.CreatePassengerResponse.passenger:type_name -> passenger.v1.Passenger
-	0,  // 1: passenger.v1.GetPassengersResponse.passengers:type_name -> passenger.v1.Passenger
-	0,  // 2: passenger.v1.GetPassengerResponse.passenger:type_name -> passenger.v1.Passenger
-	0,  // 3: passenger.v1.UpdatePassengerResponse.passenger:type_name -> passenger.v1.Passenger
-	1,  // 4: passenger.v1.PassengerService.CreatePassenger:input_type -> passenger.v1.CreatePassengerRequest
-	3,  // 5: passenger.v1.PassengerService.GetPassengers:input_type -> passenger.v1.GetPassengersRequest
-	5,  // 6: passenger.v1.PassengerService.GetPassenger:input_type -> passenger.v1.GetPassengerRequest
-	8,  // 7: passenger.v1.PassengerService.UpdatePassenger:input_type -> passenger.v1.UpdatePassengerRequest
-	7,  // 8: passenger.v1.PassengerService.DeletePassenger:input_type -> passenger.v1.DeletePassengerRequest
-	2,  // 9: passenger.v1.PassengerService.CreatePassenger:output_type -> passenger.v1.CreatePassengerResponse
-	4,  // 10: passenger.v1.PassengerService.GetPassengers:output_type -> passenger.v1.GetPassengersResponse
-	6,  // 11: passenger.v1.PassengerService.GetPassenger:output_type -> passenger.v1.GetPassengerResponse
-	9,  // 12: passenger.v1.PassengerService.UpdatePassenger:output_type -> passenger.v1.UpdatePassengerResponse
-	10, // 13: passenger.v1.PassengerService.DeletePassenger:output_type -> google.protobuf.Empty
-	9,  // [9:14] is the sub-list for method output_type
-	4,  // [4:9] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	10, // 0: passenger.v1.Passenger.date_of_birth:type_name -> google.protobuf.Timestamp
+	10, // 1: passenger.v1.Passenger.document_expires_at:type_name -> google.protobuf.Timestamp
+	10, // 2: passenger.v1.CreatePassengerRequest.date_of_birth:type_name -> google.protobuf.Timestamp
+	10, // 3: passenger.v1.CreatePassengerRequest.document_expires_at:type_name -> google.protobuf.Timestamp
+	0,  // 4: passenger.v1.CreatePassengerResponse.passenger:type_name -> passenger.v1.Passenger
+	0,  // 5: passenger.v1.GetPassengersResponse.passengers:type_name -> passenger.v1.Passenger
+	0,  // 6: passenger.v1.GetPassengerResponse.passenger:type_name -> passenger.v1.Passenger
+	10, // 7: passenger.v1.UpdatePassengerRequest.date_of_birth:type_name -> google.protobuf.Timestamp
+	10, // 8: passenger.v1.UpdatePassengerRequest.document_expires_at:type_name -> google.protobuf.Timestamp
+	0,  // 9: passenger.v1.UpdatePassengerResponse.passenger:type_name -> passenger.v1.Passenger
+	1,  // 10: passenger.v1.PassengerService.CreatePassenger:input_type -> passenger.v1.CreatePassengerRequest
+	3,  // 11: passenger.v1.PassengerService.GetPassengers:input_type -> passenger.v1.GetPassengersRequest
+	5,  // 12: passenger.v1.PassengerService.GetPassenger:input_type -> passenger.v1.GetPassengerRequest
+	8,  // 13: passenger.v1.PassengerService.UpdatePassenger:input_type -> passenger.v1.UpdatePassengerRequest
+	7,  // 14: passenger.v1.PassengerService.DeletePassenger:input_type -> passenger.v1.DeletePassengerRequest
+	2,  // 15: passenger.v1.PassengerService.CreatePassenger:output_type -> passenger.v1.CreatePassengerResponse
+	4,  // 16: passenger.v1.PassengerService.GetPassengers:output_type -> passenger.v1.GetPassengersResponse
+	6,  // 17: passenger.v1.PassengerService.GetPassenger:output_type -> passenger.v1.GetPassengerResponse
+	9,  // 18: passenger.v1.PassengerService.UpdatePassenger:output_type -> passenger.v1.UpdatePassengerResponse
+	11, // 19: passenger.v1.PassengerService.DeletePassenger:output_type -> google.protobuf.Empty
+	15, // [15:20] is the sub-list for method output_type
+	10, // [10:15] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_passenger_v1_passenger_proto_init() }

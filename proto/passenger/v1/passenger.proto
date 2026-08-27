@@ -22,22 +22,22 @@ message Passenger {
   string user_id = 2;
   string first_name = 3;
   string last_name = 4;
-  string date_of_birth = 5;
+  google.protobuf.Timestamp date_of_birth = 5;
   string gender = 6;
   string document_type = 7;
   string document_number = 8;
-  string document_expires_at = 9;
+  google.protobuf.Timestamp document_expires_at = 9;
 }
 
 message CreatePassengerRequest {
   string user_id = 1;
   string first_name = 2;
   string last_name = 3;
-  string date_of_birth = 4;
+  google.protobuf.Timestamp date_of_birth = 4;
   string gender = 5;
   string document_type = 6;
   string document_number = 7;
-  string document_expires_at = 8;
+  google.protobuf.Timestamp document_expires_at = 8;
 }
 
 message CreatePassengerResponse {
@@ -71,11 +71,11 @@ message UpdatePassengerRequest {
   string user_id = 2;
   optional string first_name = 3;
   optional string last_name = 4;
-  optional string date_of_birth = 5;
+  google.protobuf.Timestamp date_of_birth = 5;
   optional string gender = 6;
   optional string document_type = 7;
   optional string document_number = 8;
-  optional string document_expires_at = 9;
+  google.protobuf.Timestamp document_expires_at = 9;
 }
 
 message UpdatePassengerResponse {
