@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package passenger.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/passenger/v1;passengerv1";
+
+service PassengerService {
+  rpc CreatePassenger(CreatePassengerRequest) returns(CreatePassengerResponse);
+
+  rpc GetPassengers(GetPassengersRequest) returns(GetPassengersResponse);
+  rpc GetPassenger(GetPassengerRequest) returns(GetPassengerResponse);
+
+  rpc UpdatePassenger(UpdatePassengerRequest) returns(UpdatePassengerResponse);
+  rpc DeletePassenger(DeletePassengerRequest) returns(google.protobuf.Empty);
+}
+
+message Passenger {
+  string id = 1;
+  string user_id = 2;
+  string first_name = 3;
+  string last_name = 4;
+  google.protobuf.Timestamp date_of_birth = 5;
+  string gender = 6;
+  string document_type = 7;
+  string document_number = 8;
+  google.protobuf.Timestamp document_expires_at = 9;
+}
+
+message CreatePassengerRequest {
+  string user_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  google.protobuf.Timestamp date_of_birth = 4;
+  string gender = 5;
+  string document_type = 6;
+  string document_number = 7;
+  google.protobuf.Timestamp document_expires_at = 8;
+}
+
+message CreatePassengerResponse {
+  Passenger passenger = 1;
+}
+
+message GetPassengersRequest {
+  string user_id = 1;
+}
+
+message GetPassengersResponse {
+  repeated Passenger passengers = 1;
+}
+
+message GetPassengerRequest {
+  string id = 1;
+  string user_id = 2;
+}
+
+message GetPassengerResponse {
+  Passenger passenger = 1;
+}
+
+message DeletePassengerRequest {
+  string id = 1;
+  string user_id = 2;
+}
+
+message UpdatePassengerRequest {
+  string id = 1;
+  string user_id = 2;
+  optional string first_name = 3;
+  optional string last_name = 4;
+  optional google.protobuf.Timestamp date_of_birth = 5;
+  optional string gender = 6;
+  optional string document_type = 7;
+  optional string document_number = 8;
+  optional google.protobuf.Timestamp document_expires_at = 9;
+}
+
+message UpdatePassengerResponse {
+  Passenger passenger = 1;
+}

@@ -16,6 +16,11 @@ export const GRPC_SERVICES = {
 		protoPath: PROTO_PATCH.USER,
 		url: 'GRPC_USER',
 	},
+	PASSENGER_PACKAGE: {
+		package: 'passenger.v1',
+		protoPath: PROTO_PATCH.PASSENGER,
+		url: 'GRPC_USER',
+	},
 } as const
 
 export type GrpcServiceNames = keyof typeof GRPC_SERVICES
