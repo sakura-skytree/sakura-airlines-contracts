@@ -22,6 +22,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	AirportService_CreateAirport_FullMethodName = "/airport.v1.AirportService/CreateAirport"
 	AirportService_GetAirports_FullMethodName   = "/airport.v1.AirportService/GetAirports"
+	AirportService_GetAirport_FullMethodName    = "/airport.v1.AirportService/GetAirport"
 )
 
 // AirportServiceClient is the client API for AirportService service.
@@ -30,6 +31,7 @@ const (
 type AirportServiceClient interface {
 	CreateAirport(ctx context.Context, in *CreateAirportRequest, opts ...grpc.CallOption) (*CreateAirportResponse, error)
 	GetAirports(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAirportsResponse, error)
+	GetAirport(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAirportResponse, error)
 }
 
 type airportServiceClient struct {
@@ -60,12 +62,23 @@ func (c *airportServiceClient) GetAirports(ctx context.Context, in *emptypb.Empt
 	return out, nil
 }
 
+func (c *airportServiceClient) GetAirport(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAirportResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAirportResponse)
+	err := c.cc.Invoke(ctx, AirportService_GetAirport_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AirportServiceServer is the server API for AirportService service.
 // All implementations must embed UnimplementedAirportServiceServer
 // for forward compatibility.
 type AirportServiceServer interface {
 	CreateAirport(context.Context, *CreateAirportRequest) (*CreateAirportResponse, error)
 	GetAirports(context.Context, *emptypb.Empty) (*GetAirportsResponse, error)
+	GetAirport(context.Context, *emptypb.Empty) (*GetAirportResponse, error)
 	mustEmbedUnimplementedAirportServiceServer()
 }
 
@@ -81,6 +94,9 @@ func (UnimplementedAirportServiceServer) CreateAirport(context.Context, *CreateA
 }
 func (UnimplementedAirportServiceServer) GetAirports(context.Context, *emptypb.Empty) (*GetAirportsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAirports not implemented")
+}
+func (UnimplementedAirportServiceServer) GetAirport(context.Context, *emptypb.Empty) (*GetAirportResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAirport not implemented")
 }
 func (UnimplementedAirportServiceServer) mustEmbedUnimplementedAirportServiceServer() {}
 func (UnimplementedAirportServiceServer) testEmbeddedByValue()                        {}
@@ -139,6 +155,24 @@ func _AirportService_GetAirports_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AirportService_GetAirport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AirportServiceServer).GetAirport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AirportService_GetAirport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AirportServiceServer).GetAirport(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AirportService_ServiceDesc is the grpc.ServiceDesc for AirportService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -153,6 +187,10 @@ var AirportService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAirports",
 			Handler:    _AirportService_GetAirports_Handler,
+		},
+		{
+			MethodName: "GetAirport",
+			Handler:    _AirportService_GetAirport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

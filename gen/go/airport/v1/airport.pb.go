@@ -318,6 +318,50 @@ func (x *GetAirportsResponse) GetAirports() []*Airport {
 	return nil
 }
 
+type GetAirportResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Msg           string                 `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAirportResponse) Reset() {
+	*x = GetAirportResponse{}
+	mi := &file_airport_v1_airport_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAirportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAirportResponse) ProtoMessage() {}
+
+func (x *GetAirportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAirportResponse.ProtoReflect.Descriptor instead.
+func (*GetAirportResponse) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetAirportResponse) GetMsg() string {
+	if x != nil {
+		return x.Msg
+	}
+	return ""
+}
+
 var File_airport_v1_airport_proto protoreflect.FileDescriptor
 
 const file_airport_v1_airport_proto_rawDesc = "" +
@@ -346,10 +390,14 @@ const file_airport_v1_airport_proto_rawDesc = "" +
 	"\x15CreateAirportResponse\x12-\n" +
 	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport\"F\n" +
 	"\x13GetAirportsResponse\x12/\n" +
-	"\bairports\x18\x01 \x03(\v2\x13.airport.v1.AirportR\bairports2\xae\x01\n" +
+	"\bairports\x18\x01 \x03(\v2\x13.airport.v1.AirportR\bairports\"&\n" +
+	"\x12GetAirportResponse\x12\x10\n" +
+	"\x03msg\x18\x01 \x01(\tR\x03msg2\xf4\x01\n" +
 	"\x0eAirportService\x12T\n" +
 	"\rCreateAirport\x12 .airport.v1.CreateAirportRequest\x1a!.airport.v1.CreateAirportResponse\x12F\n" +
-	"\vGetAirports\x12\x16.google.protobuf.Empty\x1a\x1f.airport.v1.GetAirportsResponseBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1b\x06proto3"
+	"\vGetAirports\x12\x16.google.protobuf.Empty\x1a\x1f.airport.v1.GetAirportsResponse\x12D\n" +
+	"\n" +
+	"GetAirport\x12\x16.google.protobuf.Empty\x1a\x1e.airport.v1.GetAirportResponseBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1b\x06proto3"
 
 var (
 	file_airport_v1_airport_proto_rawDescOnce sync.Once
@@ -363,23 +411,26 @@ func file_airport_v1_airport_proto_rawDescGZIP() []byte {
 	return file_airport_v1_airport_proto_rawDescData
 }
 
-var file_airport_v1_airport_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_airport_v1_airport_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_airport_v1_airport_proto_goTypes = []any{
 	(*Airport)(nil),               // 0: airport.v1.Airport
 	(*CreateAirportRequest)(nil),  // 1: airport.v1.CreateAirportRequest
 	(*CreateAirportResponse)(nil), // 2: airport.v1.CreateAirportResponse
 	(*GetAirportsResponse)(nil),   // 3: airport.v1.GetAirportsResponse
-	(*emptypb.Empty)(nil),         // 4: google.protobuf.Empty
+	(*GetAirportResponse)(nil),    // 4: airport.v1.GetAirportResponse
+	(*emptypb.Empty)(nil),         // 5: google.protobuf.Empty
 }
 var file_airport_v1_airport_proto_depIdxs = []int32{
 	0, // 0: airport.v1.CreateAirportResponse.airport:type_name -> airport.v1.Airport
 	0, // 1: airport.v1.GetAirportsResponse.airports:type_name -> airport.v1.Airport
 	1, // 2: airport.v1.AirportService.CreateAirport:input_type -> airport.v1.CreateAirportRequest
-	4, // 3: airport.v1.AirportService.GetAirports:input_type -> google.protobuf.Empty
-	2, // 4: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
-	3, // 5: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
+	5, // 3: airport.v1.AirportService.GetAirports:input_type -> google.protobuf.Empty
+	5, // 4: airport.v1.AirportService.GetAirport:input_type -> google.protobuf.Empty
+	2, // 5: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
+	3, // 6: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
+	4, // 7: airport.v1.AirportService.GetAirport:output_type -> airport.v1.GetAirportResponse
+	5, // [5:8] is the sub-list for method output_type
+	2, // [2:5] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -396,7 +447,7 @@ func file_airport_v1_airport_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_airport_v1_airport_proto_rawDesc), len(file_airport_v1_airport_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
