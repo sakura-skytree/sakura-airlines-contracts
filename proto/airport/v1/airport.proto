@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package airport.v1;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1";
+
+service AirportService {
+  rpc CreateAirport(CreateAirportRequest) returns(CreateAirportResponse);
+
+  rpc GetAirports(google.protobuf.Empty) returns(GetAirportsResponse);
+}
+
+message Airport {
+  string id = 1;
+  string iata_code = 2;
+  string icao_code = 3;
+  string name = 4;
+  string city = 5;
+  string country = 6;
+  string timezone = 7;
+  float latitude = 8;
+  float longitude = 9;
+}
+
+message CreateAirportRequest {
+  string iata_code = 1;
+  string icao_code = 2;
+  string name = 3;
+  string city = 4;
+  string country = 5;
+  string timezone = 6;
+  float latitude = 7;
+  float longitude = 8;
+}
+
+message CreateAirportResponse {
+  Airport airport = 1;
+}
+
+message GetAirportsResponse {
+  repeated Airport airports = 1;
+}
