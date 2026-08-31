@@ -8,7 +8,6 @@
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 import { Empty } from "../../google/protobuf/empty";
-import { Timestamp } from "../../google/protobuf/timestamp";
 
 export const protobufPackage = "passenger.v1";
 
@@ -17,22 +16,22 @@ export interface Passenger {
   userId: string;
   firstName: string;
   lastName: string;
-  dateOfBirth?: Timestamp | undefined;
+  dateOfBirth: string;
   gender: string;
   documentType: string;
   documentNumber: string;
-  documentExpiresAt?: Timestamp | undefined;
+  documentExpiresAt: string;
 }
 
 export interface CreatePassengerRequest {
   userId: string;
   firstName: string;
   lastName: string;
-  dateOfBirth?: Timestamp | undefined;
+  dateOfBirth: string;
   gender: string;
   documentType: string;
   documentNumber: string;
-  documentExpiresAt?: Timestamp | undefined;
+  documentExpiresAt: string;
 }
 
 export interface CreatePassengerResponse {
@@ -66,11 +65,11 @@ export interface UpdatePassengerRequest {
   userId: string;
   firstName?: string | undefined;
   lastName?: string | undefined;
-  dateOfBirth?: Timestamp | undefined;
+  dateOfBirth: string;
   gender?: string | undefined;
   documentType?: string | undefined;
   documentNumber?: string | undefined;
-  documentExpiresAt?: Timestamp | undefined;
+  documentExpiresAt: string;
 }
 
 export interface UpdatePassengerResponse {
