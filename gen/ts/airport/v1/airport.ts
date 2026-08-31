@@ -42,12 +42,18 @@ export interface GetAirportsResponse {
   airports: Airport[];
 }
 
+export interface GetAirportResponse {
+  msg: string;
+}
+
 export const AIRPORT_V1_PACKAGE_NAME = "airport.v1";
 
 export interface AirportServiceClient {
   createAirport(request: CreateAirportRequest): Observable<CreateAirportResponse>;
 
   getAirports(request: Empty): Observable<GetAirportsResponse>;
+
+  getAirport(request: Empty): Observable<GetAirportResponse>;
 }
 
 export interface AirportServiceController {
@@ -56,11 +62,13 @@ export interface AirportServiceController {
   ): Promise<CreateAirportResponse> | Observable<CreateAirportResponse> | CreateAirportResponse;
 
   getAirports(request: Empty): Promise<GetAirportsResponse> | Observable<GetAirportsResponse> | GetAirportsResponse;
+
+  getAirport(request: Empty): Promise<GetAirportResponse> | Observable<GetAirportResponse> | GetAirportResponse;
 }
 
 export function AirportServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createAirport", "getAirports"];
+    const grpcMethods: string[] = ["createAirport", "getAirports", "getAirport"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("AirportService", method)(constructor.prototype[method], method, descriptor);

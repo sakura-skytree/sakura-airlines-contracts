@@ -10,6 +10,8 @@ service AirportService {
   rpc CreateAirport(CreateAirportRequest) returns(CreateAirportResponse);
 
   rpc GetAirports(google.protobuf.Empty) returns(GetAirportsResponse);
+
+  rpc GetAirport(google.protobuf.Empty) returns(GetAirportResponse);
 }
 
 message Airport {
@@ -41,4 +43,8 @@ message CreateAirportResponse {
 
 message GetAirportsResponse {
   repeated Airport airports = 1;
+}
+
+message GetAirportResponse {
+  string msg = 1;
 }
