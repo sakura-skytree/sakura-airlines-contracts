@@ -9,7 +9,6 @@ package airportv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -274,6 +273,58 @@ func (x *CreateAirportResponse) GetAirport() *Airport {
 	return nil
 }
 
+type GetAirportsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	City          *string                `protobuf:"bytes,1,opt,name=city,proto3,oneof" json:"city,omitempty"`
+	Country       *string                `protobuf:"bytes,2,opt,name=country,proto3,oneof" json:"country,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAirportsRequest) Reset() {
+	*x = GetAirportsRequest{}
+	mi := &file_airport_v1_airport_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAirportsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAirportsRequest) ProtoMessage() {}
+
+func (x *GetAirportsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAirportsRequest.ProtoReflect.Descriptor instead.
+func (*GetAirportsRequest) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetAirportsRequest) GetCity() string {
+	if x != nil && x.City != nil {
+		return *x.City
+	}
+	return ""
+}
+
+func (x *GetAirportsRequest) GetCountry() string {
+	if x != nil && x.Country != nil {
+		return *x.Country
+	}
+	return ""
+}
+
 type GetAirportsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Airports      []*Airport             `protobuf:"bytes,1,rep,name=airports,proto3" json:"airports,omitempty"`
@@ -283,7 +334,7 @@ type GetAirportsResponse struct {
 
 func (x *GetAirportsResponse) Reset() {
 	*x = GetAirportsResponse{}
-	mi := &file_airport_v1_airport_proto_msgTypes[3]
+	mi := &file_airport_v1_airport_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -295,7 +346,7 @@ func (x *GetAirportsResponse) String() string {
 func (*GetAirportsResponse) ProtoMessage() {}
 
 func (x *GetAirportsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_airport_v1_airport_proto_msgTypes[3]
+	mi := &file_airport_v1_airport_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -308,7 +359,7 @@ func (x *GetAirportsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAirportsResponse.ProtoReflect.Descriptor instead.
 func (*GetAirportsResponse) Descriptor() ([]byte, []int) {
-	return file_airport_v1_airport_proto_rawDescGZIP(), []int{3}
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetAirportsResponse) GetAirports() []*Airport {
@@ -316,6 +367,50 @@ func (x *GetAirportsResponse) GetAirports() []*Airport {
 		return x.Airports
 	}
 	return nil
+}
+
+type GetAirportByIdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAirportByIdRequest) Reset() {
+	*x = GetAirportByIdRequest{}
+	mi := &file_airport_v1_airport_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAirportByIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAirportByIdRequest) ProtoMessage() {}
+
+func (x *GetAirportByIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAirportByIdRequest.ProtoReflect.Descriptor instead.
+func (*GetAirportByIdRequest) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetAirportByIdRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 type GetAirportResponse struct {
@@ -327,7 +422,7 @@ type GetAirportResponse struct {
 
 func (x *GetAirportResponse) Reset() {
 	*x = GetAirportResponse{}
-	mi := &file_airport_v1_airport_proto_msgTypes[4]
+	mi := &file_airport_v1_airport_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -339,7 +434,7 @@ func (x *GetAirportResponse) String() string {
 func (*GetAirportResponse) ProtoMessage() {}
 
 func (x *GetAirportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_airport_v1_airport_proto_msgTypes[4]
+	mi := &file_airport_v1_airport_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -352,7 +447,7 @@ func (x *GetAirportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAirportResponse.ProtoReflect.Descriptor instead.
 func (*GetAirportResponse) Descriptor() ([]byte, []int) {
-	return file_airport_v1_airport_proto_rawDescGZIP(), []int{4}
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetAirportResponse) GetMsg() string {
@@ -362,12 +457,188 @@ func (x *GetAirportResponse) GetMsg() string {
 	return ""
 }
 
+type GetAirportByIcaoRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Icao          string                 `protobuf:"bytes,1,opt,name=icao,proto3" json:"icao,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAirportByIcaoRequest) Reset() {
+	*x = GetAirportByIcaoRequest{}
+	mi := &file_airport_v1_airport_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAirportByIcaoRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAirportByIcaoRequest) ProtoMessage() {}
+
+func (x *GetAirportByIcaoRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAirportByIcaoRequest.ProtoReflect.Descriptor instead.
+func (*GetAirportByIcaoRequest) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetAirportByIcaoRequest) GetIcao() string {
+	if x != nil {
+		return x.Icao
+	}
+	return ""
+}
+
+type GetAirportByIcaoResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Airport       *Airport               `protobuf:"bytes,1,opt,name=airport,proto3" json:"airport,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAirportByIcaoResponse) Reset() {
+	*x = GetAirportByIcaoResponse{}
+	mi := &file_airport_v1_airport_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAirportByIcaoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAirportByIcaoResponse) ProtoMessage() {}
+
+func (x *GetAirportByIcaoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAirportByIcaoResponse.ProtoReflect.Descriptor instead.
+func (*GetAirportByIcaoResponse) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetAirportByIcaoResponse) GetAirport() *Airport {
+	if x != nil {
+		return x.Airport
+	}
+	return nil
+}
+
+type GetAirportByIataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Iata          string                 `protobuf:"bytes,1,opt,name=iata,proto3" json:"iata,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAirportByIataRequest) Reset() {
+	*x = GetAirportByIataRequest{}
+	mi := &file_airport_v1_airport_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAirportByIataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAirportByIataRequest) ProtoMessage() {}
+
+func (x *GetAirportByIataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAirportByIataRequest.ProtoReflect.Descriptor instead.
+func (*GetAirportByIataRequest) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetAirportByIataRequest) GetIata() string {
+	if x != nil {
+		return x.Iata
+	}
+	return ""
+}
+
+type GetAirportByIataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Airport       *Airport               `protobuf:"bytes,1,opt,name=airport,proto3" json:"airport,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAirportByIataResponse) Reset() {
+	*x = GetAirportByIataResponse{}
+	mi := &file_airport_v1_airport_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAirportByIataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAirportByIataResponse) ProtoMessage() {}
+
+func (x *GetAirportByIataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAirportByIataResponse.ProtoReflect.Descriptor instead.
+func (*GetAirportByIataResponse) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetAirportByIataResponse) GetAirport() *Airport {
+	if x != nil {
+		return x.Airport
+	}
+	return nil
+}
+
 var File_airport_v1_airport_proto protoreflect.FileDescriptor
 
 const file_airport_v1_airport_proto_rawDesc = "" +
 	"\n" +
 	"\x18airport/v1/airport.proto\x12\n" +
-	"airport.v1\x1a\x1bgoogle/protobuf/empty.proto\"\xeb\x01\n" +
+	"airport.v1\"\xeb\x01\n" +
 	"\aAirport\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tiata_code\x18\x02 \x01(\tR\biataCode\x12\x1b\n" +
@@ -388,16 +659,33 @@ const file_airport_v1_airport_proto_rawDesc = "" +
 	"\blatitude\x18\a \x01(\x02R\blatitude\x12\x1c\n" +
 	"\tlongitude\x18\b \x01(\x02R\tlongitude\"F\n" +
 	"\x15CreateAirportResponse\x12-\n" +
-	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport\"F\n" +
-	"\x13GetAirportsResponse\x12/\n" +
-	"\bairports\x18\x01 \x03(\v2\x13.airport.v1.AirportR\bairports\"&\n" +
-	"\x12GetAirportResponse\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg2\xf4\x01\n" +
-	"\x0eAirportService\x12T\n" +
-	"\rCreateAirport\x12 .airport.v1.CreateAirportRequest\x1a!.airport.v1.CreateAirportResponse\x12F\n" +
-	"\vGetAirports\x12\x16.google.protobuf.Empty\x1a\x1f.airport.v1.GetAirportsResponse\x12D\n" +
+	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport\"a\n" +
+	"\x12GetAirportsRequest\x12\x17\n" +
+	"\x04city\x18\x01 \x01(\tH\x00R\x04city\x88\x01\x01\x12\x1d\n" +
+	"\acountry\x18\x02 \x01(\tH\x01R\acountry\x88\x01\x01B\a\n" +
+	"\x05_cityB\n" +
 	"\n" +
-	"GetAirport\x12\x16.google.protobuf.Empty\x1a\x1e.airport.v1.GetAirportResponseBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1b\x06proto3"
+	"\b_country\"F\n" +
+	"\x13GetAirportsResponse\x12/\n" +
+	"\bairports\x18\x01 \x03(\v2\x13.airport.v1.AirportR\bairports\"'\n" +
+	"\x15GetAirportByIdRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"&\n" +
+	"\x12GetAirportResponse\x12\x10\n" +
+	"\x03msg\x18\x01 \x01(\tR\x03msg\"-\n" +
+	"\x17GetAirportByIcaoRequest\x12\x12\n" +
+	"\x04icao\x18\x01 \x01(\tR\x04icao\"I\n" +
+	"\x18GetAirportByIcaoResponse\x12-\n" +
+	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport\"-\n" +
+	"\x17GetAirportByIataRequest\x12\x12\n" +
+	"\x04iata\x18\x01 \x01(\tR\x04iata\"I\n" +
+	"\x18GetAirportByIataResponse\x12-\n" +
+	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport2\xc9\x03\n" +
+	"\x0eAirportService\x12T\n" +
+	"\rCreateAirport\x12 .airport.v1.CreateAirportRequest\x1a!.airport.v1.CreateAirportResponse\x12N\n" +
+	"\vGetAirports\x12\x1e.airport.v1.GetAirportsRequest\x1a\x1f.airport.v1.GetAirportsResponse\x12S\n" +
+	"\x0eGetAirportById\x12!.airport.v1.GetAirportByIdRequest\x1a\x1e.airport.v1.GetAirportResponse\x12]\n" +
+	"\x10GetAirportByIcao\x12#.airport.v1.GetAirportByIcaoRequest\x1a$.airport.v1.GetAirportByIcaoResponse\x12]\n" +
+	"\x10GetAirportByIata\x12#.airport.v1.GetAirportByIataRequest\x1a$.airport.v1.GetAirportByIataResponseBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1b\x06proto3"
 
 var (
 	file_airport_v1_airport_proto_rawDescOnce sync.Once
@@ -411,29 +699,40 @@ func file_airport_v1_airport_proto_rawDescGZIP() []byte {
 	return file_airport_v1_airport_proto_rawDescData
 }
 
-var file_airport_v1_airport_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_airport_v1_airport_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_airport_v1_airport_proto_goTypes = []any{
-	(*Airport)(nil),               // 0: airport.v1.Airport
-	(*CreateAirportRequest)(nil),  // 1: airport.v1.CreateAirportRequest
-	(*CreateAirportResponse)(nil), // 2: airport.v1.CreateAirportResponse
-	(*GetAirportsResponse)(nil),   // 3: airport.v1.GetAirportsResponse
-	(*GetAirportResponse)(nil),    // 4: airport.v1.GetAirportResponse
-	(*emptypb.Empty)(nil),         // 5: google.protobuf.Empty
+	(*Airport)(nil),                  // 0: airport.v1.Airport
+	(*CreateAirportRequest)(nil),     // 1: airport.v1.CreateAirportRequest
+	(*CreateAirportResponse)(nil),    // 2: airport.v1.CreateAirportResponse
+	(*GetAirportsRequest)(nil),       // 3: airport.v1.GetAirportsRequest
+	(*GetAirportsResponse)(nil),      // 4: airport.v1.GetAirportsResponse
+	(*GetAirportByIdRequest)(nil),    // 5: airport.v1.GetAirportByIdRequest
+	(*GetAirportResponse)(nil),       // 6: airport.v1.GetAirportResponse
+	(*GetAirportByIcaoRequest)(nil),  // 7: airport.v1.GetAirportByIcaoRequest
+	(*GetAirportByIcaoResponse)(nil), // 8: airport.v1.GetAirportByIcaoResponse
+	(*GetAirportByIataRequest)(nil),  // 9: airport.v1.GetAirportByIataRequest
+	(*GetAirportByIataResponse)(nil), // 10: airport.v1.GetAirportByIataResponse
 }
 var file_airport_v1_airport_proto_depIdxs = []int32{
-	0, // 0: airport.v1.CreateAirportResponse.airport:type_name -> airport.v1.Airport
-	0, // 1: airport.v1.GetAirportsResponse.airports:type_name -> airport.v1.Airport
-	1, // 2: airport.v1.AirportService.CreateAirport:input_type -> airport.v1.CreateAirportRequest
-	5, // 3: airport.v1.AirportService.GetAirports:input_type -> google.protobuf.Empty
-	5, // 4: airport.v1.AirportService.GetAirport:input_type -> google.protobuf.Empty
-	2, // 5: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
-	3, // 6: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
-	4, // 7: airport.v1.AirportService.GetAirport:output_type -> airport.v1.GetAirportResponse
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0,  // 0: airport.v1.CreateAirportResponse.airport:type_name -> airport.v1.Airport
+	0,  // 1: airport.v1.GetAirportsResponse.airports:type_name -> airport.v1.Airport
+	0,  // 2: airport.v1.GetAirportByIcaoResponse.airport:type_name -> airport.v1.Airport
+	0,  // 3: airport.v1.GetAirportByIataResponse.airport:type_name -> airport.v1.Airport
+	1,  // 4: airport.v1.AirportService.CreateAirport:input_type -> airport.v1.CreateAirportRequest
+	3,  // 5: airport.v1.AirportService.GetAirports:input_type -> airport.v1.GetAirportsRequest
+	5,  // 6: airport.v1.AirportService.GetAirportById:input_type -> airport.v1.GetAirportByIdRequest
+	7,  // 7: airport.v1.AirportService.GetAirportByIcao:input_type -> airport.v1.GetAirportByIcaoRequest
+	9,  // 8: airport.v1.AirportService.GetAirportByIata:input_type -> airport.v1.GetAirportByIataRequest
+	2,  // 9: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
+	4,  // 10: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
+	6,  // 11: airport.v1.AirportService.GetAirportById:output_type -> airport.v1.GetAirportResponse
+	8,  // 12: airport.v1.AirportService.GetAirportByIcao:output_type -> airport.v1.GetAirportByIcaoResponse
+	10, // 13: airport.v1.AirportService.GetAirportByIata:output_type -> airport.v1.GetAirportByIataResponse
+	9,  // [9:14] is the sub-list for method output_type
+	4,  // [4:9] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_airport_v1_airport_proto_init() }
@@ -441,13 +740,14 @@ func file_airport_v1_airport_proto_init() {
 	if File_airport_v1_airport_proto != nil {
 		return
 	}
+	file_airport_v1_airport_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_airport_v1_airport_proto_rawDesc), len(file_airport_v1_airport_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
