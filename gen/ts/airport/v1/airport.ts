@@ -7,7 +7,6 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { Empty } from "../../google/protobuf/empty";
 
 export const protobufPackage = "airport.v1";
 
@@ -38,12 +37,37 @@ export interface CreateAirportResponse {
   airport?: Airport | undefined;
 }
 
+export interface GetAirportsRequest {
+  city?: string | undefined;
+  country?: string | undefined;
+}
+
 export interface GetAirportsResponse {
   airports: Airport[];
 }
 
+export interface GetAirportByIdRequest {
+  id: string;
+}
+
 export interface GetAirportResponse {
   msg: string;
+}
+
+export interface GetAirportByIcaoRequest {
+  icao: string;
+}
+
+export interface GetAirportByIcaoResponse {
+  airport?: Airport | undefined;
+}
+
+export interface GetAirportByIataRequest {
+  iata: string;
+}
+
+export interface GetAirportByIataResponse {
+  airport?: Airport | undefined;
 }
 
 export const AIRPORT_V1_PACKAGE_NAME = "airport.v1";
@@ -51,9 +75,13 @@ export const AIRPORT_V1_PACKAGE_NAME = "airport.v1";
 export interface AirportServiceClient {
   createAirport(request: CreateAirportRequest): Observable<CreateAirportResponse>;
 
-  getAirports(request: Empty): Observable<GetAirportsResponse>;
+  getAirports(request: GetAirportsRequest): Observable<GetAirportsResponse>;
 
-  getAirport(request: Empty): Observable<GetAirportResponse>;
+  getAirportById(request: GetAirportByIdRequest): Observable<GetAirportResponse>;
+
+  getAirportByIcao(request: GetAirportByIcaoRequest): Observable<GetAirportByIcaoResponse>;
+
+  getAirportByIata(request: GetAirportByIataRequest): Observable<GetAirportByIataResponse>;
 }
 
 export interface AirportServiceController {
@@ -61,14 +89,32 @@ export interface AirportServiceController {
     request: CreateAirportRequest,
   ): Promise<CreateAirportResponse> | Observable<CreateAirportResponse> | CreateAirportResponse;
 
-  getAirports(request: Empty): Promise<GetAirportsResponse> | Observable<GetAirportsResponse> | GetAirportsResponse;
+  getAirports(
+    request: GetAirportsRequest,
+  ): Promise<GetAirportsResponse> | Observable<GetAirportsResponse> | GetAirportsResponse;
 
-  getAirport(request: Empty): Promise<GetAirportResponse> | Observable<GetAirportResponse> | GetAirportResponse;
+  getAirportById(
+    request: GetAirportByIdRequest,
+  ): Promise<GetAirportResponse> | Observable<GetAirportResponse> | GetAirportResponse;
+
+  getAirportByIcao(
+    request: GetAirportByIcaoRequest,
+  ): Promise<GetAirportByIcaoResponse> | Observable<GetAirportByIcaoResponse> | GetAirportByIcaoResponse;
+
+  getAirportByIata(
+    request: GetAirportByIataRequest,
+  ): Promise<GetAirportByIataResponse> | Observable<GetAirportByIataResponse> | GetAirportByIataResponse;
 }
 
 export function AirportServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createAirport", "getAirports", "getAirport"];
+    const grpcMethods: string[] = [
+      "createAirport",
+      "getAirports",
+      "getAirportById",
+      "getAirportByIcao",
+      "getAirportByIata",
+    ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("AirportService", method)(constructor.prototype[method], method, descriptor);

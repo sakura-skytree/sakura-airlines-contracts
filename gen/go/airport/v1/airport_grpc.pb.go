@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AirportService_CreateAirport_FullMethodName = "/airport.v1.AirportService/CreateAirport"
-	AirportService_GetAirports_FullMethodName   = "/airport.v1.AirportService/GetAirports"
-	AirportService_GetAirport_FullMethodName    = "/airport.v1.AirportService/GetAirport"
+	AirportService_CreateAirport_FullMethodName    = "/airport.v1.AirportService/CreateAirport"
+	AirportService_GetAirports_FullMethodName      = "/airport.v1.AirportService/GetAirports"
+	AirportService_GetAirportById_FullMethodName   = "/airport.v1.AirportService/GetAirportById"
+	AirportService_GetAirportByIcao_FullMethodName = "/airport.v1.AirportService/GetAirportByIcao"
+	AirportService_GetAirportByIata_FullMethodName = "/airport.v1.AirportService/GetAirportByIata"
 )
 
 // AirportServiceClient is the client API for AirportService service.
@@ -30,8 +31,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AirportServiceClient interface {
 	CreateAirport(ctx context.Context, in *CreateAirportRequest, opts ...grpc.CallOption) (*CreateAirportResponse, error)
-	GetAirports(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAirportsResponse, error)
-	GetAirport(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAirportResponse, error)
+	GetAirports(ctx context.Context, in *GetAirportsRequest, opts ...grpc.CallOption) (*GetAirportsResponse, error)
+	GetAirportById(ctx context.Context, in *GetAirportByIdRequest, opts ...grpc.CallOption) (*GetAirportResponse, error)
+	GetAirportByIcao(ctx context.Context, in *GetAirportByIcaoRequest, opts ...grpc.CallOption) (*GetAirportByIcaoResponse, error)
+	GetAirportByIata(ctx context.Context, in *GetAirportByIataRequest, opts ...grpc.CallOption) (*GetAirportByIataResponse, error)
 }
 
 type airportServiceClient struct {
@@ -52,7 +55,7 @@ func (c *airportServiceClient) CreateAirport(ctx context.Context, in *CreateAirp
 	return out, nil
 }
 
-func (c *airportServiceClient) GetAirports(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAirportsResponse, error) {
+func (c *airportServiceClient) GetAirports(ctx context.Context, in *GetAirportsRequest, opts ...grpc.CallOption) (*GetAirportsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetAirportsResponse)
 	err := c.cc.Invoke(ctx, AirportService_GetAirports_FullMethodName, in, out, cOpts...)
@@ -62,10 +65,30 @@ func (c *airportServiceClient) GetAirports(ctx context.Context, in *emptypb.Empt
 	return out, nil
 }
 
-func (c *airportServiceClient) GetAirport(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetAirportResponse, error) {
+func (c *airportServiceClient) GetAirportById(ctx context.Context, in *GetAirportByIdRequest, opts ...grpc.CallOption) (*GetAirportResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetAirportResponse)
-	err := c.cc.Invoke(ctx, AirportService_GetAirport_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, AirportService_GetAirportById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *airportServiceClient) GetAirportByIcao(ctx context.Context, in *GetAirportByIcaoRequest, opts ...grpc.CallOption) (*GetAirportByIcaoResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAirportByIcaoResponse)
+	err := c.cc.Invoke(ctx, AirportService_GetAirportByIcao_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *airportServiceClient) GetAirportByIata(ctx context.Context, in *GetAirportByIataRequest, opts ...grpc.CallOption) (*GetAirportByIataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAirportByIataResponse)
+	err := c.cc.Invoke(ctx, AirportService_GetAirportByIata_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,8 +100,10 @@ func (c *airportServiceClient) GetAirport(ctx context.Context, in *emptypb.Empty
 // for forward compatibility.
 type AirportServiceServer interface {
 	CreateAirport(context.Context, *CreateAirportRequest) (*CreateAirportResponse, error)
-	GetAirports(context.Context, *emptypb.Empty) (*GetAirportsResponse, error)
-	GetAirport(context.Context, *emptypb.Empty) (*GetAirportResponse, error)
+	GetAirports(context.Context, *GetAirportsRequest) (*GetAirportsResponse, error)
+	GetAirportById(context.Context, *GetAirportByIdRequest) (*GetAirportResponse, error)
+	GetAirportByIcao(context.Context, *GetAirportByIcaoRequest) (*GetAirportByIcaoResponse, error)
+	GetAirportByIata(context.Context, *GetAirportByIataRequest) (*GetAirportByIataResponse, error)
 	mustEmbedUnimplementedAirportServiceServer()
 }
 
@@ -92,11 +117,17 @@ type UnimplementedAirportServiceServer struct{}
 func (UnimplementedAirportServiceServer) CreateAirport(context.Context, *CreateAirportRequest) (*CreateAirportResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateAirport not implemented")
 }
-func (UnimplementedAirportServiceServer) GetAirports(context.Context, *emptypb.Empty) (*GetAirportsResponse, error) {
+func (UnimplementedAirportServiceServer) GetAirports(context.Context, *GetAirportsRequest) (*GetAirportsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAirports not implemented")
 }
-func (UnimplementedAirportServiceServer) GetAirport(context.Context, *emptypb.Empty) (*GetAirportResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetAirport not implemented")
+func (UnimplementedAirportServiceServer) GetAirportById(context.Context, *GetAirportByIdRequest) (*GetAirportResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAirportById not implemented")
+}
+func (UnimplementedAirportServiceServer) GetAirportByIcao(context.Context, *GetAirportByIcaoRequest) (*GetAirportByIcaoResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAirportByIcao not implemented")
+}
+func (UnimplementedAirportServiceServer) GetAirportByIata(context.Context, *GetAirportByIataRequest) (*GetAirportByIataResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAirportByIata not implemented")
 }
 func (UnimplementedAirportServiceServer) mustEmbedUnimplementedAirportServiceServer() {}
 func (UnimplementedAirportServiceServer) testEmbeddedByValue()                        {}
@@ -138,7 +169,7 @@ func _AirportService_CreateAirport_Handler(srv interface{}, ctx context.Context,
 }
 
 func _AirportService_GetAirports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetAirportsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -150,25 +181,61 @@ func _AirportService_GetAirports_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: AirportService_GetAirports_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AirportServiceServer).GetAirports(ctx, req.(*emptypb.Empty))
+		return srv.(AirportServiceServer).GetAirports(ctx, req.(*GetAirportsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AirportService_GetAirport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+func _AirportService_GetAirportById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAirportByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AirportServiceServer).GetAirport(ctx, in)
+		return srv.(AirportServiceServer).GetAirportById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AirportService_GetAirport_FullMethodName,
+		FullMethod: AirportService_GetAirportById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AirportServiceServer).GetAirport(ctx, req.(*emptypb.Empty))
+		return srv.(AirportServiceServer).GetAirportById(ctx, req.(*GetAirportByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AirportService_GetAirportByIcao_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAirportByIcaoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AirportServiceServer).GetAirportByIcao(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AirportService_GetAirportByIcao_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AirportServiceServer).GetAirportByIcao(ctx, req.(*GetAirportByIcaoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AirportService_GetAirportByIata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAirportByIataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AirportServiceServer).GetAirportByIata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AirportService_GetAirportByIata_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AirportServiceServer).GetAirportByIata(ctx, req.(*GetAirportByIataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -189,8 +256,16 @@ var AirportService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AirportService_GetAirports_Handler,
 		},
 		{
-			MethodName: "GetAirport",
-			Handler:    _AirportService_GetAirport_Handler,
+			MethodName: "GetAirportById",
+			Handler:    _AirportService_GetAirportById_Handler,
+		},
+		{
+			MethodName: "GetAirportByIcao",
+			Handler:    _AirportService_GetAirportByIcao_Handler,
+		},
+		{
+			MethodName: "GetAirportByIata",
+			Handler:    _AirportService_GetAirportByIata_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
