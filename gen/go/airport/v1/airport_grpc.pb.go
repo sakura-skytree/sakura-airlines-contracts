@@ -32,7 +32,7 @@ const (
 type AirportServiceClient interface {
 	CreateAirport(ctx context.Context, in *CreateAirportRequest, opts ...grpc.CallOption) (*CreateAirportResponse, error)
 	GetAirports(ctx context.Context, in *GetAirportsRequest, opts ...grpc.CallOption) (*GetAirportsResponse, error)
-	GetAirportById(ctx context.Context, in *GetAirportByIdRequest, opts ...grpc.CallOption) (*GetAirportResponse, error)
+	GetAirportById(ctx context.Context, in *GetAirportByIdRequest, opts ...grpc.CallOption) (*GetAirportByIdResponse, error)
 	GetAirportByIcao(ctx context.Context, in *GetAirportByIcaoRequest, opts ...grpc.CallOption) (*GetAirportByIcaoResponse, error)
 	GetAirportByIata(ctx context.Context, in *GetAirportByIataRequest, opts ...grpc.CallOption) (*GetAirportByIataResponse, error)
 }
@@ -65,9 +65,9 @@ func (c *airportServiceClient) GetAirports(ctx context.Context, in *GetAirportsR
 	return out, nil
 }
 
-func (c *airportServiceClient) GetAirportById(ctx context.Context, in *GetAirportByIdRequest, opts ...grpc.CallOption) (*GetAirportResponse, error) {
+func (c *airportServiceClient) GetAirportById(ctx context.Context, in *GetAirportByIdRequest, opts ...grpc.CallOption) (*GetAirportByIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetAirportResponse)
+	out := new(GetAirportByIdResponse)
 	err := c.cc.Invoke(ctx, AirportService_GetAirportById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -101,7 +101,7 @@ func (c *airportServiceClient) GetAirportByIata(ctx context.Context, in *GetAirp
 type AirportServiceServer interface {
 	CreateAirport(context.Context, *CreateAirportRequest) (*CreateAirportResponse, error)
 	GetAirports(context.Context, *GetAirportsRequest) (*GetAirportsResponse, error)
-	GetAirportById(context.Context, *GetAirportByIdRequest) (*GetAirportResponse, error)
+	GetAirportById(context.Context, *GetAirportByIdRequest) (*GetAirportByIdResponse, error)
 	GetAirportByIcao(context.Context, *GetAirportByIcaoRequest) (*GetAirportByIcaoResponse, error)
 	GetAirportByIata(context.Context, *GetAirportByIataRequest) (*GetAirportByIataResponse, error)
 	mustEmbedUnimplementedAirportServiceServer()
@@ -120,7 +120,7 @@ func (UnimplementedAirportServiceServer) CreateAirport(context.Context, *CreateA
 func (UnimplementedAirportServiceServer) GetAirports(context.Context, *GetAirportsRequest) (*GetAirportsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAirports not implemented")
 }
-func (UnimplementedAirportServiceServer) GetAirportById(context.Context, *GetAirportByIdRequest) (*GetAirportResponse, error) {
+func (UnimplementedAirportServiceServer) GetAirportById(context.Context, *GetAirportByIdRequest) (*GetAirportByIdResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAirportById not implemented")
 }
 func (UnimplementedAirportServiceServer) GetAirportByIcao(context.Context, *GetAirportByIcaoRequest) (*GetAirportByIcaoResponse, error) {

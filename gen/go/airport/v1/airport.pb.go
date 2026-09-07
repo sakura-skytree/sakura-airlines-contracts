@@ -413,27 +413,27 @@ func (x *GetAirportByIdRequest) GetId() string {
 	return ""
 }
 
-type GetAirportResponse struct {
+type GetAirportByIdResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Msg           string                 `protobuf:"bytes,1,opt,name=msg,proto3" json:"msg,omitempty"`
+	Airport       *Airport               `protobuf:"bytes,1,opt,name=airport,proto3" json:"airport,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetAirportResponse) Reset() {
-	*x = GetAirportResponse{}
+func (x *GetAirportByIdResponse) Reset() {
+	*x = GetAirportByIdResponse{}
 	mi := &file_airport_v1_airport_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetAirportResponse) String() string {
+func (x *GetAirportByIdResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetAirportResponse) ProtoMessage() {}
+func (*GetAirportByIdResponse) ProtoMessage() {}
 
-func (x *GetAirportResponse) ProtoReflect() protoreflect.Message {
+func (x *GetAirportByIdResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_airport_v1_airport_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -445,16 +445,16 @@ func (x *GetAirportResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetAirportResponse.ProtoReflect.Descriptor instead.
-func (*GetAirportResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetAirportByIdResponse.ProtoReflect.Descriptor instead.
+func (*GetAirportByIdResponse) Descriptor() ([]byte, []int) {
 	return file_airport_v1_airport_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GetAirportResponse) GetMsg() string {
+func (x *GetAirportByIdResponse) GetAirport() *Airport {
 	if x != nil {
-		return x.Msg
+		return x.Airport
 	}
-	return ""
+	return nil
 }
 
 type GetAirportByIcaoRequest struct {
@@ -669,9 +669,9 @@ const file_airport_v1_airport_proto_rawDesc = "" +
 	"\x13GetAirportsResponse\x12/\n" +
 	"\bairports\x18\x01 \x03(\v2\x13.airport.v1.AirportR\bairports\"'\n" +
 	"\x15GetAirportByIdRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"&\n" +
-	"\x12GetAirportResponse\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg\"-\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"G\n" +
+	"\x16GetAirportByIdResponse\x12-\n" +
+	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport\"-\n" +
 	"\x17GetAirportByIcaoRequest\x12\x12\n" +
 	"\x04icao\x18\x01 \x01(\tR\x04icao\"I\n" +
 	"\x18GetAirportByIcaoResponse\x12-\n" +
@@ -679,11 +679,11 @@ const file_airport_v1_airport_proto_rawDesc = "" +
 	"\x17GetAirportByIataRequest\x12\x12\n" +
 	"\x04iata\x18\x01 \x01(\tR\x04iata\"I\n" +
 	"\x18GetAirportByIataResponse\x12-\n" +
-	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport2\xc9\x03\n" +
+	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport2\xcd\x03\n" +
 	"\x0eAirportService\x12T\n" +
 	"\rCreateAirport\x12 .airport.v1.CreateAirportRequest\x1a!.airport.v1.CreateAirportResponse\x12N\n" +
-	"\vGetAirports\x12\x1e.airport.v1.GetAirportsRequest\x1a\x1f.airport.v1.GetAirportsResponse\x12S\n" +
-	"\x0eGetAirportById\x12!.airport.v1.GetAirportByIdRequest\x1a\x1e.airport.v1.GetAirportResponse\x12]\n" +
+	"\vGetAirports\x12\x1e.airport.v1.GetAirportsRequest\x1a\x1f.airport.v1.GetAirportsResponse\x12W\n" +
+	"\x0eGetAirportById\x12!.airport.v1.GetAirportByIdRequest\x1a\".airport.v1.GetAirportByIdResponse\x12]\n" +
 	"\x10GetAirportByIcao\x12#.airport.v1.GetAirportByIcaoRequest\x1a$.airport.v1.GetAirportByIcaoResponse\x12]\n" +
 	"\x10GetAirportByIata\x12#.airport.v1.GetAirportByIataRequest\x1a$.airport.v1.GetAirportByIataResponseBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1b\x06proto3"
 
@@ -707,7 +707,7 @@ var file_airport_v1_airport_proto_goTypes = []any{
 	(*GetAirportsRequest)(nil),       // 3: airport.v1.GetAirportsRequest
 	(*GetAirportsResponse)(nil),      // 4: airport.v1.GetAirportsResponse
 	(*GetAirportByIdRequest)(nil),    // 5: airport.v1.GetAirportByIdRequest
-	(*GetAirportResponse)(nil),       // 6: airport.v1.GetAirportResponse
+	(*GetAirportByIdResponse)(nil),   // 6: airport.v1.GetAirportByIdResponse
 	(*GetAirportByIcaoRequest)(nil),  // 7: airport.v1.GetAirportByIcaoRequest
 	(*GetAirportByIcaoResponse)(nil), // 8: airport.v1.GetAirportByIcaoResponse
 	(*GetAirportByIataRequest)(nil),  // 9: airport.v1.GetAirportByIataRequest
@@ -716,23 +716,24 @@ var file_airport_v1_airport_proto_goTypes = []any{
 var file_airport_v1_airport_proto_depIdxs = []int32{
 	0,  // 0: airport.v1.CreateAirportResponse.airport:type_name -> airport.v1.Airport
 	0,  // 1: airport.v1.GetAirportsResponse.airports:type_name -> airport.v1.Airport
-	0,  // 2: airport.v1.GetAirportByIcaoResponse.airport:type_name -> airport.v1.Airport
-	0,  // 3: airport.v1.GetAirportByIataResponse.airport:type_name -> airport.v1.Airport
-	1,  // 4: airport.v1.AirportService.CreateAirport:input_type -> airport.v1.CreateAirportRequest
-	3,  // 5: airport.v1.AirportService.GetAirports:input_type -> airport.v1.GetAirportsRequest
-	5,  // 6: airport.v1.AirportService.GetAirportById:input_type -> airport.v1.GetAirportByIdRequest
-	7,  // 7: airport.v1.AirportService.GetAirportByIcao:input_type -> airport.v1.GetAirportByIcaoRequest
-	9,  // 8: airport.v1.AirportService.GetAirportByIata:input_type -> airport.v1.GetAirportByIataRequest
-	2,  // 9: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
-	4,  // 10: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
-	6,  // 11: airport.v1.AirportService.GetAirportById:output_type -> airport.v1.GetAirportResponse
-	8,  // 12: airport.v1.AirportService.GetAirportByIcao:output_type -> airport.v1.GetAirportByIcaoResponse
-	10, // 13: airport.v1.AirportService.GetAirportByIata:output_type -> airport.v1.GetAirportByIataResponse
-	9,  // [9:14] is the sub-list for method output_type
-	4,  // [4:9] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	0,  // 2: airport.v1.GetAirportByIdResponse.airport:type_name -> airport.v1.Airport
+	0,  // 3: airport.v1.GetAirportByIcaoResponse.airport:type_name -> airport.v1.Airport
+	0,  // 4: airport.v1.GetAirportByIataResponse.airport:type_name -> airport.v1.Airport
+	1,  // 5: airport.v1.AirportService.CreateAirport:input_type -> airport.v1.CreateAirportRequest
+	3,  // 6: airport.v1.AirportService.GetAirports:input_type -> airport.v1.GetAirportsRequest
+	5,  // 7: airport.v1.AirportService.GetAirportById:input_type -> airport.v1.GetAirportByIdRequest
+	7,  // 8: airport.v1.AirportService.GetAirportByIcao:input_type -> airport.v1.GetAirportByIcaoRequest
+	9,  // 9: airport.v1.AirportService.GetAirportByIata:input_type -> airport.v1.GetAirportByIataRequest
+	2,  // 10: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
+	4,  // 11: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
+	6,  // 12: airport.v1.AirportService.GetAirportById:output_type -> airport.v1.GetAirportByIdResponse
+	8,  // 13: airport.v1.AirportService.GetAirportByIcao:output_type -> airport.v1.GetAirportByIcaoResponse
+	10, // 14: airport.v1.AirportService.GetAirportByIata:output_type -> airport.v1.GetAirportByIataResponse
+	10, // [10:15] is the sub-list for method output_type
+	5,  // [5:10] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_airport_v1_airport_proto_init() }

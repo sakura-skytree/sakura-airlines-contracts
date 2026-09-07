@@ -9,7 +9,7 @@ service AirportService {
 
   rpc GetAirports(GetAirportsRequest) returns(GetAirportsResponse);
 
-  rpc GetAirportById(GetAirportByIdRequest) returns(GetAirportResponse);
+  rpc GetAirportById(GetAirportByIdRequest) returns(GetAirportByIdResponse);
   rpc GetAirportByIcao(GetAirportByIcaoRequest) returns(GetAirportByIcaoResponse);
   rpc GetAirportByIata(GetAirportByIataRequest) returns(GetAirportByIataResponse);
 }
@@ -54,8 +54,8 @@ message GetAirportByIdRequest {
   string id = 1;
 }
 
-message GetAirportResponse {
-  string msg = 1;
+message GetAirportByIdResponse {
+  Airport airport = 1;
 }
 
 message GetAirportByIcaoRequest {
