@@ -50,8 +50,8 @@ export interface GetAirportByIdRequest {
   id: string;
 }
 
-export interface GetAirportResponse {
-  msg: string;
+export interface GetAirportByIdResponse {
+  airport?: Airport | undefined;
 }
 
 export interface GetAirportByIcaoRequest {
@@ -77,7 +77,7 @@ export interface AirportServiceClient {
 
   getAirports(request: GetAirportsRequest): Observable<GetAirportsResponse>;
 
-  getAirportById(request: GetAirportByIdRequest): Observable<GetAirportResponse>;
+  getAirportById(request: GetAirportByIdRequest): Observable<GetAirportByIdResponse>;
 
   getAirportByIcao(request: GetAirportByIcaoRequest): Observable<GetAirportByIcaoResponse>;
 
@@ -95,7 +95,7 @@ export interface AirportServiceController {
 
   getAirportById(
     request: GetAirportByIdRequest,
-  ): Promise<GetAirportResponse> | Observable<GetAirportResponse> | GetAirportResponse;
+  ): Promise<GetAirportByIdResponse> | Observable<GetAirportByIdResponse> | GetAirportByIdResponse;
 
   getAirportByIcao(
     request: GetAirportByIcaoRequest,
