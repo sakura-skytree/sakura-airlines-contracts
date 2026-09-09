@@ -9,6 +9,7 @@ package airportv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -633,12 +634,208 @@ func (x *GetAirportByIataResponse) GetAirport() *Airport {
 	return nil
 }
 
+type DeleteAirportRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteAirportRequest) Reset() {
+	*x = DeleteAirportRequest{}
+	mi := &file_airport_v1_airport_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteAirportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAirportRequest) ProtoMessage() {}
+
+func (x *DeleteAirportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAirportRequest.ProtoReflect.Descriptor instead.
+func (*DeleteAirportRequest) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *DeleteAirportRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type UpdateAirportRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	IataCode      *string                `protobuf:"bytes,2,opt,name=iata_code,json=iataCode,proto3,oneof" json:"iata_code,omitempty"`
+	IcaoCode      *string                `protobuf:"bytes,3,opt,name=icao_code,json=icaoCode,proto3,oneof" json:"icao_code,omitempty"`
+	Name          *string                `protobuf:"bytes,4,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	City          *string                `protobuf:"bytes,5,opt,name=city,proto3,oneof" json:"city,omitempty"`
+	Country       *string                `protobuf:"bytes,6,opt,name=country,proto3,oneof" json:"country,omitempty"`
+	Timezone      *string                `protobuf:"bytes,7,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`
+	Latitude      *float32               `protobuf:"fixed32,8,opt,name=latitude,proto3,oneof" json:"latitude,omitempty"`
+	Longitude     *float32               `protobuf:"fixed32,9,opt,name=longitude,proto3,oneof" json:"longitude,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateAirportRequest) Reset() {
+	*x = UpdateAirportRequest{}
+	mi := &file_airport_v1_airport_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAirportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAirportRequest) ProtoMessage() {}
+
+func (x *UpdateAirportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAirportRequest.ProtoReflect.Descriptor instead.
+func (*UpdateAirportRequest) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *UpdateAirportRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateAirportRequest) GetIataCode() string {
+	if x != nil && x.IataCode != nil {
+		return *x.IataCode
+	}
+	return ""
+}
+
+func (x *UpdateAirportRequest) GetIcaoCode() string {
+	if x != nil && x.IcaoCode != nil {
+		return *x.IcaoCode
+	}
+	return ""
+}
+
+func (x *UpdateAirportRequest) GetName() string {
+	if x != nil && x.Name != nil {
+		return *x.Name
+	}
+	return ""
+}
+
+func (x *UpdateAirportRequest) GetCity() string {
+	if x != nil && x.City != nil {
+		return *x.City
+	}
+	return ""
+}
+
+func (x *UpdateAirportRequest) GetCountry() string {
+	if x != nil && x.Country != nil {
+		return *x.Country
+	}
+	return ""
+}
+
+func (x *UpdateAirportRequest) GetTimezone() string {
+	if x != nil && x.Timezone != nil {
+		return *x.Timezone
+	}
+	return ""
+}
+
+func (x *UpdateAirportRequest) GetLatitude() float32 {
+	if x != nil && x.Latitude != nil {
+		return *x.Latitude
+	}
+	return 0
+}
+
+func (x *UpdateAirportRequest) GetLongitude() float32 {
+	if x != nil && x.Longitude != nil {
+		return *x.Longitude
+	}
+	return 0
+}
+
+type UpdateAirportResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Airport       *Airport               `protobuf:"bytes,1,opt,name=airport,proto3" json:"airport,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateAirportResponse) Reset() {
+	*x = UpdateAirportResponse{}
+	mi := &file_airport_v1_airport_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateAirportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateAirportResponse) ProtoMessage() {}
+
+func (x *UpdateAirportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_airport_v1_airport_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateAirportResponse.ProtoReflect.Descriptor instead.
+func (*UpdateAirportResponse) Descriptor() ([]byte, []int) {
+	return file_airport_v1_airport_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *UpdateAirportResponse) GetAirport() *Airport {
+	if x != nil {
+		return x.Airport
+	}
+	return nil
+}
+
 var File_airport_v1_airport_proto protoreflect.FileDescriptor
 
 const file_airport_v1_airport_proto_rawDesc = "" +
 	"\n" +
 	"\x18airport/v1/airport.proto\x12\n" +
-	"airport.v1\"\xeb\x01\n" +
+	"airport.v1\x1a\x1bgoogle/protobuf/empty.proto\"\xeb\x01\n" +
 	"\aAirport\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tiata_code\x18\x02 \x01(\tR\biataCode\x12\x1b\n" +
@@ -679,13 +876,41 @@ const file_airport_v1_airport_proto_rawDesc = "" +
 	"\x17GetAirportByIataRequest\x12\x12\n" +
 	"\x04iata\x18\x01 \x01(\tR\x04iata\"I\n" +
 	"\x18GetAirportByIataResponse\x12-\n" +
-	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport2\xcd\x03\n" +
+	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport\"&\n" +
+	"\x14DeleteAirportRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x82\x03\n" +
+	"\x14UpdateAirportRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
+	"\tiata_code\x18\x02 \x01(\tH\x00R\biataCode\x88\x01\x01\x12 \n" +
+	"\ticao_code\x18\x03 \x01(\tH\x01R\bicaoCode\x88\x01\x01\x12\x17\n" +
+	"\x04name\x18\x04 \x01(\tH\x02R\x04name\x88\x01\x01\x12\x17\n" +
+	"\x04city\x18\x05 \x01(\tH\x03R\x04city\x88\x01\x01\x12\x1d\n" +
+	"\acountry\x18\x06 \x01(\tH\x04R\acountry\x88\x01\x01\x12\x1f\n" +
+	"\btimezone\x18\a \x01(\tH\x05R\btimezone\x88\x01\x01\x12\x1f\n" +
+	"\blatitude\x18\b \x01(\x02H\x06R\blatitude\x88\x01\x01\x12!\n" +
+	"\tlongitude\x18\t \x01(\x02H\aR\tlongitude\x88\x01\x01B\f\n" +
+	"\n" +
+	"_iata_codeB\f\n" +
+	"\n" +
+	"_icao_codeB\a\n" +
+	"\x05_nameB\a\n" +
+	"\x05_cityB\n" +
+	"\n" +
+	"\b_countryB\v\n" +
+	"\t_timezoneB\v\n" +
+	"\t_latitudeB\f\n" +
+	"\n" +
+	"_longitude\"F\n" +
+	"\x15UpdateAirportResponse\x12-\n" +
+	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport2\xee\x04\n" +
 	"\x0eAirportService\x12T\n" +
 	"\rCreateAirport\x12 .airport.v1.CreateAirportRequest\x1a!.airport.v1.CreateAirportResponse\x12N\n" +
 	"\vGetAirports\x12\x1e.airport.v1.GetAirportsRequest\x1a\x1f.airport.v1.GetAirportsResponse\x12W\n" +
 	"\x0eGetAirportById\x12!.airport.v1.GetAirportByIdRequest\x1a\".airport.v1.GetAirportByIdResponse\x12]\n" +
 	"\x10GetAirportByIcao\x12#.airport.v1.GetAirportByIcaoRequest\x1a$.airport.v1.GetAirportByIcaoResponse\x12]\n" +
-	"\x10GetAirportByIata\x12#.airport.v1.GetAirportByIataRequest\x1a$.airport.v1.GetAirportByIataResponseBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1b\x06proto3"
+	"\x10GetAirportByIata\x12#.airport.v1.GetAirportByIataRequest\x1a$.airport.v1.GetAirportByIataResponse\x12I\n" +
+	"\rDeleteAirport\x12 .airport.v1.DeleteAirportRequest\x1a\x16.google.protobuf.Empty\x12T\n" +
+	"\rUpdateAirport\x12 .airport.v1.UpdateAirportRequest\x1a!.airport.v1.UpdateAirportResponseBQZOgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/airport/v1;airportv1b\x06proto3"
 
 var (
 	file_airport_v1_airport_proto_rawDescOnce sync.Once
@@ -699,7 +924,7 @@ func file_airport_v1_airport_proto_rawDescGZIP() []byte {
 	return file_airport_v1_airport_proto_rawDescData
 }
 
-var file_airport_v1_airport_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_airport_v1_airport_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_airport_v1_airport_proto_goTypes = []any{
 	(*Airport)(nil),                  // 0: airport.v1.Airport
 	(*CreateAirportRequest)(nil),     // 1: airport.v1.CreateAirportRequest
@@ -712,6 +937,10 @@ var file_airport_v1_airport_proto_goTypes = []any{
 	(*GetAirportByIcaoResponse)(nil), // 8: airport.v1.GetAirportByIcaoResponse
 	(*GetAirportByIataRequest)(nil),  // 9: airport.v1.GetAirportByIataRequest
 	(*GetAirportByIataResponse)(nil), // 10: airport.v1.GetAirportByIataResponse
+	(*DeleteAirportRequest)(nil),     // 11: airport.v1.DeleteAirportRequest
+	(*UpdateAirportRequest)(nil),     // 12: airport.v1.UpdateAirportRequest
+	(*UpdateAirportResponse)(nil),    // 13: airport.v1.UpdateAirportResponse
+	(*emptypb.Empty)(nil),            // 14: google.protobuf.Empty
 }
 var file_airport_v1_airport_proto_depIdxs = []int32{
 	0,  // 0: airport.v1.CreateAirportResponse.airport:type_name -> airport.v1.Airport
@@ -719,21 +948,26 @@ var file_airport_v1_airport_proto_depIdxs = []int32{
 	0,  // 2: airport.v1.GetAirportByIdResponse.airport:type_name -> airport.v1.Airport
 	0,  // 3: airport.v1.GetAirportByIcaoResponse.airport:type_name -> airport.v1.Airport
 	0,  // 4: airport.v1.GetAirportByIataResponse.airport:type_name -> airport.v1.Airport
-	1,  // 5: airport.v1.AirportService.CreateAirport:input_type -> airport.v1.CreateAirportRequest
-	3,  // 6: airport.v1.AirportService.GetAirports:input_type -> airport.v1.GetAirportsRequest
-	5,  // 7: airport.v1.AirportService.GetAirportById:input_type -> airport.v1.GetAirportByIdRequest
-	7,  // 8: airport.v1.AirportService.GetAirportByIcao:input_type -> airport.v1.GetAirportByIcaoRequest
-	9,  // 9: airport.v1.AirportService.GetAirportByIata:input_type -> airport.v1.GetAirportByIataRequest
-	2,  // 10: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
-	4,  // 11: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
-	6,  // 12: airport.v1.AirportService.GetAirportById:output_type -> airport.v1.GetAirportByIdResponse
-	8,  // 13: airport.v1.AirportService.GetAirportByIcao:output_type -> airport.v1.GetAirportByIcaoResponse
-	10, // 14: airport.v1.AirportService.GetAirportByIata:output_type -> airport.v1.GetAirportByIataResponse
-	10, // [10:15] is the sub-list for method output_type
-	5,  // [5:10] is the sub-list for method input_type
-	5,  // [5:5] is the sub-list for extension type_name
-	5,  // [5:5] is the sub-list for extension extendee
-	0,  // [0:5] is the sub-list for field type_name
+	0,  // 5: airport.v1.UpdateAirportResponse.airport:type_name -> airport.v1.Airport
+	1,  // 6: airport.v1.AirportService.CreateAirport:input_type -> airport.v1.CreateAirportRequest
+	3,  // 7: airport.v1.AirportService.GetAirports:input_type -> airport.v1.GetAirportsRequest
+	5,  // 8: airport.v1.AirportService.GetAirportById:input_type -> airport.v1.GetAirportByIdRequest
+	7,  // 9: airport.v1.AirportService.GetAirportByIcao:input_type -> airport.v1.GetAirportByIcaoRequest
+	9,  // 10: airport.v1.AirportService.GetAirportByIata:input_type -> airport.v1.GetAirportByIataRequest
+	11, // 11: airport.v1.AirportService.DeleteAirport:input_type -> airport.v1.DeleteAirportRequest
+	12, // 12: airport.v1.AirportService.UpdateAirport:input_type -> airport.v1.UpdateAirportRequest
+	2,  // 13: airport.v1.AirportService.CreateAirport:output_type -> airport.v1.CreateAirportResponse
+	4,  // 14: airport.v1.AirportService.GetAirports:output_type -> airport.v1.GetAirportsResponse
+	6,  // 15: airport.v1.AirportService.GetAirportById:output_type -> airport.v1.GetAirportByIdResponse
+	8,  // 16: airport.v1.AirportService.GetAirportByIcao:output_type -> airport.v1.GetAirportByIcaoResponse
+	10, // 17: airport.v1.AirportService.GetAirportByIata:output_type -> airport.v1.GetAirportByIataResponse
+	14, // 18: airport.v1.AirportService.DeleteAirport:output_type -> google.protobuf.Empty
+	13, // 19: airport.v1.AirportService.UpdateAirport:output_type -> airport.v1.UpdateAirportResponse
+	13, // [13:20] is the sub-list for method output_type
+	6,  // [6:13] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_airport_v1_airport_proto_init() }
@@ -742,13 +976,14 @@ func file_airport_v1_airport_proto_init() {
 		return
 	}
 	file_airport_v1_airport_proto_msgTypes[3].OneofWrappers = []any{}
+	file_airport_v1_airport_proto_msgTypes[12].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_airport_v1_airport_proto_rawDesc), len(file_airport_v1_airport_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
