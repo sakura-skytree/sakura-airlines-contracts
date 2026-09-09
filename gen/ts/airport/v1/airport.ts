@@ -77,8 +77,6 @@ export interface DeleteAirportRequest {
 
 export interface UpdateAirportRequest {
   id: string;
-  iataCode?: string | undefined;
-  icaoCode?: string | undefined;
   name?: string | undefined;
   city?: string | undefined;
   country?: string | undefined;

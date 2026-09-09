@@ -681,14 +681,12 @@ func (x *DeleteAirportRequest) GetId() string {
 type UpdateAirportRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	IataCode      *string                `protobuf:"bytes,2,opt,name=iata_code,json=iataCode,proto3,oneof" json:"iata_code,omitempty"`
-	IcaoCode      *string                `protobuf:"bytes,3,opt,name=icao_code,json=icaoCode,proto3,oneof" json:"icao_code,omitempty"`
-	Name          *string                `protobuf:"bytes,4,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	City          *string                `protobuf:"bytes,5,opt,name=city,proto3,oneof" json:"city,omitempty"`
-	Country       *string                `protobuf:"bytes,6,opt,name=country,proto3,oneof" json:"country,omitempty"`
-	Timezone      *string                `protobuf:"bytes,7,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`
-	Latitude      *float32               `protobuf:"fixed32,8,opt,name=latitude,proto3,oneof" json:"latitude,omitempty"`
-	Longitude     *float32               `protobuf:"fixed32,9,opt,name=longitude,proto3,oneof" json:"longitude,omitempty"`
+	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	City          *string                `protobuf:"bytes,3,opt,name=city,proto3,oneof" json:"city,omitempty"`
+	Country       *string                `protobuf:"bytes,4,opt,name=country,proto3,oneof" json:"country,omitempty"`
+	Timezone      *string                `protobuf:"bytes,5,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`
+	Latitude      *float32               `protobuf:"fixed32,6,opt,name=latitude,proto3,oneof" json:"latitude,omitempty"`
+	Longitude     *float32               `protobuf:"fixed32,7,opt,name=longitude,proto3,oneof" json:"longitude,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -726,20 +724,6 @@ func (*UpdateAirportRequest) Descriptor() ([]byte, []int) {
 func (x *UpdateAirportRequest) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *UpdateAirportRequest) GetIataCode() string {
-	if x != nil && x.IataCode != nil {
-		return *x.IataCode
-	}
-	return ""
-}
-
-func (x *UpdateAirportRequest) GetIcaoCode() string {
-	if x != nil && x.IcaoCode != nil {
-		return *x.IcaoCode
 	}
 	return ""
 }
@@ -878,21 +862,15 @@ const file_airport_v1_airport_proto_rawDesc = "" +
 	"\x18GetAirportByIataResponse\x12-\n" +
 	"\aairport\x18\x01 \x01(\v2\x13.airport.v1.AirportR\aairport\"&\n" +
 	"\x14DeleteAirportRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x82\x03\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xa2\x02\n" +
 	"\x14UpdateAirportRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
-	"\tiata_code\x18\x02 \x01(\tH\x00R\biataCode\x88\x01\x01\x12 \n" +
-	"\ticao_code\x18\x03 \x01(\tH\x01R\bicaoCode\x88\x01\x01\x12\x17\n" +
-	"\x04name\x18\x04 \x01(\tH\x02R\x04name\x88\x01\x01\x12\x17\n" +
-	"\x04city\x18\x05 \x01(\tH\x03R\x04city\x88\x01\x01\x12\x1d\n" +
-	"\acountry\x18\x06 \x01(\tH\x04R\acountry\x88\x01\x01\x12\x1f\n" +
-	"\btimezone\x18\a \x01(\tH\x05R\btimezone\x88\x01\x01\x12\x1f\n" +
-	"\blatitude\x18\b \x01(\x02H\x06R\blatitude\x88\x01\x01\x12!\n" +
-	"\tlongitude\x18\t \x01(\x02H\aR\tlongitude\x88\x01\x01B\f\n" +
-	"\n" +
-	"_iata_codeB\f\n" +
-	"\n" +
-	"_icao_codeB\a\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x17\n" +
+	"\x04city\x18\x03 \x01(\tH\x01R\x04city\x88\x01\x01\x12\x1d\n" +
+	"\acountry\x18\x04 \x01(\tH\x02R\acountry\x88\x01\x01\x12\x1f\n" +
+	"\btimezone\x18\x05 \x01(\tH\x03R\btimezone\x88\x01\x01\x12\x1f\n" +
+	"\blatitude\x18\x06 \x01(\x02H\x04R\blatitude\x88\x01\x01\x12!\n" +
+	"\tlongitude\x18\a \x01(\x02H\x05R\tlongitude\x88\x01\x01B\a\n" +
 	"\x05_nameB\a\n" +
 	"\x05_cityB\n" +
 	"\n" +
