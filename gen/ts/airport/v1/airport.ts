@@ -7,6 +7,7 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
+import { Empty } from "../../google/protobuf/empty";
 
 export const protobufPackage = "airport.v1";
 
@@ -70,6 +71,24 @@ export interface GetAirportByIataResponse {
   airport?: Airport | undefined;
 }
 
+export interface DeleteAirportRequest {
+  id: string;
+}
+
+export interface UpdateAirportRequest {
+  id: string;
+  name?: string | undefined;
+  city?: string | undefined;
+  country?: string | undefined;
+  timezone?: string | undefined;
+  latitude?: number | undefined;
+  longitude?: number | undefined;
+}
+
+export interface UpdateAirportResponse {
+  airport?: Airport | undefined;
+}
+
 export const AIRPORT_V1_PACKAGE_NAME = "airport.v1";
 
 export interface AirportServiceClient {
@@ -82,6 +101,10 @@ export interface AirportServiceClient {
   getAirportByIcao(request: GetAirportByIcaoRequest): Observable<GetAirportByIcaoResponse>;
 
   getAirportByIata(request: GetAirportByIataRequest): Observable<GetAirportByIataResponse>;
+
+  deleteAirport(request: DeleteAirportRequest): Observable<Empty>;
+
+  updateAirport(request: UpdateAirportRequest): Observable<UpdateAirportResponse>;
 }
 
 export interface AirportServiceController {
@@ -104,6 +127,12 @@ export interface AirportServiceController {
   getAirportByIata(
     request: GetAirportByIataRequest,
   ): Promise<GetAirportByIataResponse> | Observable<GetAirportByIataResponse> | GetAirportByIataResponse;
+
+  deleteAirport(request: DeleteAirportRequest): void | Promise<void>;
+
+  updateAirport(
+    request: UpdateAirportRequest,
+  ): Promise<UpdateAirportResponse> | Observable<UpdateAirportResponse> | UpdateAirportResponse;
 }
 
 export function AirportServiceControllerMethods() {
@@ -114,6 +143,8 @@ export function AirportServiceControllerMethods() {
       "getAirportById",
       "getAirportByIcao",
       "getAirportByIata",
+      "deleteAirport",
+      "updateAirport",
     ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);

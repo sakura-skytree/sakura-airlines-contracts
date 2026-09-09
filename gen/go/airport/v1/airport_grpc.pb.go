@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -24,6 +25,8 @@ const (
 	AirportService_GetAirportById_FullMethodName   = "/airport.v1.AirportService/GetAirportById"
 	AirportService_GetAirportByIcao_FullMethodName = "/airport.v1.AirportService/GetAirportByIcao"
 	AirportService_GetAirportByIata_FullMethodName = "/airport.v1.AirportService/GetAirportByIata"
+	AirportService_DeleteAirport_FullMethodName    = "/airport.v1.AirportService/DeleteAirport"
+	AirportService_UpdateAirport_FullMethodName    = "/airport.v1.AirportService/UpdateAirport"
 )
 
 // AirportServiceClient is the client API for AirportService service.
@@ -35,6 +38,8 @@ type AirportServiceClient interface {
 	GetAirportById(ctx context.Context, in *GetAirportByIdRequest, opts ...grpc.CallOption) (*GetAirportByIdResponse, error)
 	GetAirportByIcao(ctx context.Context, in *GetAirportByIcaoRequest, opts ...grpc.CallOption) (*GetAirportByIcaoResponse, error)
 	GetAirportByIata(ctx context.Context, in *GetAirportByIataRequest, opts ...grpc.CallOption) (*GetAirportByIataResponse, error)
+	DeleteAirport(ctx context.Context, in *DeleteAirportRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateAirport(ctx context.Context, in *UpdateAirportRequest, opts ...grpc.CallOption) (*UpdateAirportResponse, error)
 }
 
 type airportServiceClient struct {
@@ -95,6 +100,26 @@ func (c *airportServiceClient) GetAirportByIata(ctx context.Context, in *GetAirp
 	return out, nil
 }
 
+func (c *airportServiceClient) DeleteAirport(ctx context.Context, in *DeleteAirportRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, AirportService_DeleteAirport_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *airportServiceClient) UpdateAirport(ctx context.Context, in *UpdateAirportRequest, opts ...grpc.CallOption) (*UpdateAirportResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateAirportResponse)
+	err := c.cc.Invoke(ctx, AirportService_UpdateAirport_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AirportServiceServer is the server API for AirportService service.
 // All implementations must embed UnimplementedAirportServiceServer
 // for forward compatibility.
@@ -104,6 +129,8 @@ type AirportServiceServer interface {
 	GetAirportById(context.Context, *GetAirportByIdRequest) (*GetAirportByIdResponse, error)
 	GetAirportByIcao(context.Context, *GetAirportByIcaoRequest) (*GetAirportByIcaoResponse, error)
 	GetAirportByIata(context.Context, *GetAirportByIataRequest) (*GetAirportByIataResponse, error)
+	DeleteAirport(context.Context, *DeleteAirportRequest) (*emptypb.Empty, error)
+	UpdateAirport(context.Context, *UpdateAirportRequest) (*UpdateAirportResponse, error)
 	mustEmbedUnimplementedAirportServiceServer()
 }
 
@@ -128,6 +155,12 @@ func (UnimplementedAirportServiceServer) GetAirportByIcao(context.Context, *GetA
 }
 func (UnimplementedAirportServiceServer) GetAirportByIata(context.Context, *GetAirportByIataRequest) (*GetAirportByIataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAirportByIata not implemented")
+}
+func (UnimplementedAirportServiceServer) DeleteAirport(context.Context, *DeleteAirportRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteAirport not implemented")
+}
+func (UnimplementedAirportServiceServer) UpdateAirport(context.Context, *UpdateAirportRequest) (*UpdateAirportResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateAirport not implemented")
 }
 func (UnimplementedAirportServiceServer) mustEmbedUnimplementedAirportServiceServer() {}
 func (UnimplementedAirportServiceServer) testEmbeddedByValue()                        {}
@@ -240,6 +273,42 @@ func _AirportService_GetAirportByIata_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AirportService_DeleteAirport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAirportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AirportServiceServer).DeleteAirport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AirportService_DeleteAirport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AirportServiceServer).DeleteAirport(ctx, req.(*DeleteAirportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AirportService_UpdateAirport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateAirportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AirportServiceServer).UpdateAirport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AirportService_UpdateAirport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AirportServiceServer).UpdateAirport(ctx, req.(*UpdateAirportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AirportService_ServiceDesc is the grpc.ServiceDesc for AirportService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +335,14 @@ var AirportService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAirportByIata",
 			Handler:    _AirportService_GetAirportByIata_Handler,
+		},
+		{
+			MethodName: "DeleteAirport",
+			Handler:    _AirportService_DeleteAirport_Handler,
+		},
+		{
+			MethodName: "UpdateAirport",
+			Handler:    _AirportService_UpdateAirport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
