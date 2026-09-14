@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package aircraft.v1;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/aircraft/v1;aircraftv1";
+
+service AircraftService { 
+  rpc AircraftCheck(google.protobuf.Empty) returns(AircraftCheckResponse);
+}
+
+message AircraftCheckResponse {
+  bool ok = 1;
+}
