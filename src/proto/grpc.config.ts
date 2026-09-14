@@ -26,6 +26,11 @@ export const GRPC_SERVICES = {
 		protoPath: PROTO_PATCH.AIRPORT,
 		url: 'GRPC_AIRPORT',
 	},
+	AIRCRAFT_PACKAGE: {
+		package: 'aircraft.v1',
+		protoPath: PROTO_PATCH.AIRCRAFT,
+		url: 'GRPC_AIRCRAFT',
+	},
 } as const
 
 export type GrpcServiceNames = keyof typeof GRPC_SERVICES

@@ -6,4 +6,5 @@ export const PROTO_PATCH = {
 	USER: join(__dirname, '../../proto/user/v1/user.proto'),
 	PASSENGER: join(__dirname, '../../proto/passenger/v1/passenger.proto'),
 	AIRPORT: join(__dirname, '../../proto/airport/v1/airport.proto'),
+	AIRCRAFT: join(__dirname, '../../proto/aircraft/v1/aircraft.proto'),
 } as const
