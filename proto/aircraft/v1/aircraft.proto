@@ -8,8 +8,42 @@ option go_package = "github.com/sakura-skytree/sakura-airlines-contracts/gen/go/
 
 service AircraftService { 
   rpc AircraftCheck(google.protobuf.Empty) returns(AircraftCheckResponse);
+
+  rpc CreateAircraftModel(CreateAircraftModelRequest) returns(CreateAircraftModelResponse);
+  rpc DeleteAircraftModel(DeleteAircraftModelRequest) returns(google.protobuf.Empty);
+
+  rpc GetAircraftModelById(GetAircraftModelByIdRequest) returns(GetAircraftModelByIdResponse);
+}
+
+message AircraftModel {
+  string id = 1;
+  string manufacturer = 2;
+  string model = 3;
+  string variant = 4;
 }
 
 message AircraftCheckResponse {
   bool ok = 1;
+}
+
+message CreateAircraftModelRequest {
+  string manufacturer = 1;
+  string model = 2;
+  string variant = 3;
+}
+
+message CreateAircraftModelResponse {
+  AircraftModel aircraft_model = 1;
+}
+
+message DeleteAircraftModelRequest {
+  string id = 1;
+}
+
+message GetAircraftModelByIdRequest {
+  string id = 1;
+}
+
+message GetAircraftModelByIdResponse {
+  AircraftModel aircraft_model = 1;
 }
