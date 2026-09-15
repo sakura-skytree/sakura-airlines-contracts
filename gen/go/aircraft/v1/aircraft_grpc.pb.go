@@ -20,7 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AircraftService_AircraftCheck_FullMethodName = "/aircraft.v1.AircraftService/AircraftCheck"
+	AircraftService_AircraftCheck_FullMethodName        = "/aircraft.v1.AircraftService/AircraftCheck"
+	AircraftService_CreateAircraftModel_FullMethodName  = "/aircraft.v1.AircraftService/CreateAircraftModel"
+	AircraftService_DeleteAircraftModel_FullMethodName  = "/aircraft.v1.AircraftService/DeleteAircraftModel"
+	AircraftService_GetAircraftModelById_FullMethodName = "/aircraft.v1.AircraftService/GetAircraftModelById"
 )
 
 // AircraftServiceClient is the client API for AircraftService service.
@@ -28,6 +31,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AircraftServiceClient interface {
 	AircraftCheck(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AircraftCheckResponse, error)
+	CreateAircraftModel(ctx context.Context, in *CreateAircraftModelRequest, opts ...grpc.CallOption) (*CreateAircraftModelResponse, error)
+	DeleteAircraftModel(ctx context.Context, in *DeleteAircraftModelRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetAircraftModelById(ctx context.Context, in *GetAircraftModelByIdRequest, opts ...grpc.CallOption) (*GetAircraftModelByIdResponse, error)
 }
 
 type aircraftServiceClient struct {
@@ -48,11 +54,44 @@ func (c *aircraftServiceClient) AircraftCheck(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
+func (c *aircraftServiceClient) CreateAircraftModel(ctx context.Context, in *CreateAircraftModelRequest, opts ...grpc.CallOption) (*CreateAircraftModelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateAircraftModelResponse)
+	err := c.cc.Invoke(ctx, AircraftService_CreateAircraftModel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aircraftServiceClient) DeleteAircraftModel(ctx context.Context, in *DeleteAircraftModelRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, AircraftService_DeleteAircraftModel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *aircraftServiceClient) GetAircraftModelById(ctx context.Context, in *GetAircraftModelByIdRequest, opts ...grpc.CallOption) (*GetAircraftModelByIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAircraftModelByIdResponse)
+	err := c.cc.Invoke(ctx, AircraftService_GetAircraftModelById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AircraftServiceServer is the server API for AircraftService service.
 // All implementations must embed UnimplementedAircraftServiceServer
 // for forward compatibility.
 type AircraftServiceServer interface {
 	AircraftCheck(context.Context, *emptypb.Empty) (*AircraftCheckResponse, error)
+	CreateAircraftModel(context.Context, *CreateAircraftModelRequest) (*CreateAircraftModelResponse, error)
+	DeleteAircraftModel(context.Context, *DeleteAircraftModelRequest) (*emptypb.Empty, error)
+	GetAircraftModelById(context.Context, *GetAircraftModelByIdRequest) (*GetAircraftModelByIdResponse, error)
 	mustEmbedUnimplementedAircraftServiceServer()
 }
 
@@ -65,6 +104,15 @@ type UnimplementedAircraftServiceServer struct{}
 
 func (UnimplementedAircraftServiceServer) AircraftCheck(context.Context, *emptypb.Empty) (*AircraftCheckResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method AircraftCheck not implemented")
+}
+func (UnimplementedAircraftServiceServer) CreateAircraftModel(context.Context, *CreateAircraftModelRequest) (*CreateAircraftModelResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateAircraftModel not implemented")
+}
+func (UnimplementedAircraftServiceServer) DeleteAircraftModel(context.Context, *DeleteAircraftModelRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method DeleteAircraftModel not implemented")
+}
+func (UnimplementedAircraftServiceServer) GetAircraftModelById(context.Context, *GetAircraftModelByIdRequest) (*GetAircraftModelByIdResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetAircraftModelById not implemented")
 }
 func (UnimplementedAircraftServiceServer) mustEmbedUnimplementedAircraftServiceServer() {}
 func (UnimplementedAircraftServiceServer) testEmbeddedByValue()                         {}
@@ -105,6 +153,60 @@ func _AircraftService_AircraftCheck_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AircraftService_CreateAircraftModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateAircraftModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AircraftServiceServer).CreateAircraftModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AircraftService_CreateAircraftModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AircraftServiceServer).CreateAircraftModel(ctx, req.(*CreateAircraftModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AircraftService_DeleteAircraftModel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteAircraftModelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AircraftServiceServer).DeleteAircraftModel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AircraftService_DeleteAircraftModel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AircraftServiceServer).DeleteAircraftModel(ctx, req.(*DeleteAircraftModelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AircraftService_GetAircraftModelById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAircraftModelByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AircraftServiceServer).GetAircraftModelById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AircraftService_GetAircraftModelById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AircraftServiceServer).GetAircraftModelById(ctx, req.(*GetAircraftModelByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AircraftService_ServiceDesc is the grpc.ServiceDesc for AircraftService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -115,6 +217,18 @@ var AircraftService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AircraftCheck",
 			Handler:    _AircraftService_AircraftCheck_Handler,
+		},
+		{
+			MethodName: "CreateAircraftModel",
+			Handler:    _AircraftService_CreateAircraftModel_Handler,
+		},
+		{
+			MethodName: "DeleteAircraftModel",
+			Handler:    _AircraftService_DeleteAircraftModel_Handler,
+		},
+		{
+			MethodName: "GetAircraftModelById",
+			Handler:    _AircraftService_GetAircraftModelById_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

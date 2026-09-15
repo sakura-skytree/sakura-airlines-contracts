@@ -22,6 +22,74 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type AircraftModel struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Manufacturer  string                 `protobuf:"bytes,2,opt,name=manufacturer,proto3" json:"manufacturer,omitempty"`
+	Model         string                 `protobuf:"bytes,3,opt,name=model,proto3" json:"model,omitempty"`
+	Variant       string                 `protobuf:"bytes,4,opt,name=variant,proto3" json:"variant,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AircraftModel) Reset() {
+	*x = AircraftModel{}
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AircraftModel) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AircraftModel) ProtoMessage() {}
+
+func (x *AircraftModel) ProtoReflect() protoreflect.Message {
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AircraftModel.ProtoReflect.Descriptor instead.
+func (*AircraftModel) Descriptor() ([]byte, []int) {
+	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *AircraftModel) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AircraftModel) GetManufacturer() string {
+	if x != nil {
+		return x.Manufacturer
+	}
+	return ""
+}
+
+func (x *AircraftModel) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *AircraftModel) GetVariant() string {
+	if x != nil {
+		return x.Variant
+	}
+	return ""
+}
+
 type AircraftCheckResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
@@ -31,7 +99,7 @@ type AircraftCheckResponse struct {
 
 func (x *AircraftCheckResponse) Reset() {
 	*x = AircraftCheckResponse{}
-	mi := &file_aircraft_v1_aircraft_proto_msgTypes[0]
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +111,7 @@ func (x *AircraftCheckResponse) String() string {
 func (*AircraftCheckResponse) ProtoMessage() {}
 
 func (x *AircraftCheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_aircraft_v1_aircraft_proto_msgTypes[0]
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +124,7 @@ func (x *AircraftCheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AircraftCheckResponse.ProtoReflect.Descriptor instead.
 func (*AircraftCheckResponse) Descriptor() ([]byte, []int) {
-	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{0}
+	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AircraftCheckResponse) GetOk() bool {
@@ -66,15 +134,271 @@ func (x *AircraftCheckResponse) GetOk() bool {
 	return false
 }
 
+type CreateAircraftModelRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Manufacturer  string                 `protobuf:"bytes,1,opt,name=manufacturer,proto3" json:"manufacturer,omitempty"`
+	Model         string                 `protobuf:"bytes,2,opt,name=model,proto3" json:"model,omitempty"`
+	Variant       string                 `protobuf:"bytes,3,opt,name=variant,proto3" json:"variant,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateAircraftModelRequest) Reset() {
+	*x = CreateAircraftModelRequest{}
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateAircraftModelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAircraftModelRequest) ProtoMessage() {}
+
+func (x *CreateAircraftModelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAircraftModelRequest.ProtoReflect.Descriptor instead.
+func (*CreateAircraftModelRequest) Descriptor() ([]byte, []int) {
+	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateAircraftModelRequest) GetManufacturer() string {
+	if x != nil {
+		return x.Manufacturer
+	}
+	return ""
+}
+
+func (x *CreateAircraftModelRequest) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *CreateAircraftModelRequest) GetVariant() string {
+	if x != nil {
+		return x.Variant
+	}
+	return ""
+}
+
+type CreateAircraftModelResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AircraftModel *AircraftModel         `protobuf:"bytes,1,opt,name=aircraft_model,json=aircraftModel,proto3" json:"aircraft_model,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateAircraftModelResponse) Reset() {
+	*x = CreateAircraftModelResponse{}
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateAircraftModelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAircraftModelResponse) ProtoMessage() {}
+
+func (x *CreateAircraftModelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAircraftModelResponse.ProtoReflect.Descriptor instead.
+func (*CreateAircraftModelResponse) Descriptor() ([]byte, []int) {
+	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateAircraftModelResponse) GetAircraftModel() *AircraftModel {
+	if x != nil {
+		return x.AircraftModel
+	}
+	return nil
+}
+
+type DeleteAircraftModelRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteAircraftModelRequest) Reset() {
+	*x = DeleteAircraftModelRequest{}
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteAircraftModelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteAircraftModelRequest) ProtoMessage() {}
+
+func (x *DeleteAircraftModelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteAircraftModelRequest.ProtoReflect.Descriptor instead.
+func (*DeleteAircraftModelRequest) Descriptor() ([]byte, []int) {
+	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DeleteAircraftModelRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetAircraftModelByIdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAircraftModelByIdRequest) Reset() {
+	*x = GetAircraftModelByIdRequest{}
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAircraftModelByIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAircraftModelByIdRequest) ProtoMessage() {}
+
+func (x *GetAircraftModelByIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAircraftModelByIdRequest.ProtoReflect.Descriptor instead.
+func (*GetAircraftModelByIdRequest) Descriptor() ([]byte, []int) {
+	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetAircraftModelByIdRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetAircraftModelByIdResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AircraftModel *AircraftModel         `protobuf:"bytes,1,opt,name=aircraft_model,json=aircraftModel,proto3" json:"aircraft_model,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAircraftModelByIdResponse) Reset() {
+	*x = GetAircraftModelByIdResponse{}
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAircraftModelByIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAircraftModelByIdResponse) ProtoMessage() {}
+
+func (x *GetAircraftModelByIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_aircraft_v1_aircraft_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAircraftModelByIdResponse.ProtoReflect.Descriptor instead.
+func (*GetAircraftModelByIdResponse) Descriptor() ([]byte, []int) {
+	return file_aircraft_v1_aircraft_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetAircraftModelByIdResponse) GetAircraftModel() *AircraftModel {
+	if x != nil {
+		return x.AircraftModel
+	}
+	return nil
+}
+
 var File_aircraft_v1_aircraft_proto protoreflect.FileDescriptor
 
 const file_aircraft_v1_aircraft_proto_rawDesc = "" +
 	"\n" +
-	"\x1aaircraft/v1/aircraft.proto\x12\vaircraft.v1\x1a\x1bgoogle/protobuf/empty.proto\"'\n" +
+	"\x1aaircraft/v1/aircraft.proto\x12\vaircraft.v1\x1a\x1bgoogle/protobuf/empty.proto\"s\n" +
+	"\rAircraftModel\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\"\n" +
+	"\fmanufacturer\x18\x02 \x01(\tR\fmanufacturer\x12\x14\n" +
+	"\x05model\x18\x03 \x01(\tR\x05model\x12\x18\n" +
+	"\avariant\x18\x04 \x01(\tR\avariant\"'\n" +
 	"\x15AircraftCheckResponse\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok2^\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok\"p\n" +
+	"\x1aCreateAircraftModelRequest\x12\"\n" +
+	"\fmanufacturer\x18\x01 \x01(\tR\fmanufacturer\x12\x14\n" +
+	"\x05model\x18\x02 \x01(\tR\x05model\x12\x18\n" +
+	"\avariant\x18\x03 \x01(\tR\avariant\"`\n" +
+	"\x1bCreateAircraftModelResponse\x12A\n" +
+	"\x0eaircraft_model\x18\x01 \x01(\v2\x1a.aircraft.v1.AircraftModelR\raircraftModel\",\n" +
+	"\x1aDeleteAircraftModelRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"-\n" +
+	"\x1bGetAircraftModelByIdRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"a\n" +
+	"\x1cGetAircraftModelByIdResponse\x12A\n" +
+	"\x0eaircraft_model\x18\x01 \x01(\v2\x1a.aircraft.v1.AircraftModelR\raircraftModel2\x8d\x03\n" +
 	"\x0fAircraftService\x12K\n" +
-	"\rAircraftCheck\x12\x16.google.protobuf.Empty\x1a\".aircraft.v1.AircraftCheckResponseBSZQgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/aircraft/v1;aircraftv1b\x06proto3"
+	"\rAircraftCheck\x12\x16.google.protobuf.Empty\x1a\".aircraft.v1.AircraftCheckResponse\x12h\n" +
+	"\x13CreateAircraftModel\x12'.aircraft.v1.CreateAircraftModelRequest\x1a(.aircraft.v1.CreateAircraftModelResponse\x12V\n" +
+	"\x13DeleteAircraftModel\x12'.aircraft.v1.DeleteAircraftModelRequest\x1a\x16.google.protobuf.Empty\x12k\n" +
+	"\x14GetAircraftModelById\x12(.aircraft.v1.GetAircraftModelByIdRequest\x1a).aircraft.v1.GetAircraftModelByIdResponseBSZQgithub.com/sakura-skytree/sakura-airlines-contracts/gen/go/aircraft/v1;aircraftv1b\x06proto3"
 
 var (
 	file_aircraft_v1_aircraft_proto_rawDescOnce sync.Once
@@ -88,19 +412,33 @@ func file_aircraft_v1_aircraft_proto_rawDescGZIP() []byte {
 	return file_aircraft_v1_aircraft_proto_rawDescData
 }
 
-var file_aircraft_v1_aircraft_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_aircraft_v1_aircraft_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_aircraft_v1_aircraft_proto_goTypes = []any{
-	(*AircraftCheckResponse)(nil), // 0: aircraft.v1.AircraftCheckResponse
-	(*emptypb.Empty)(nil),         // 1: google.protobuf.Empty
+	(*AircraftModel)(nil),                // 0: aircraft.v1.AircraftModel
+	(*AircraftCheckResponse)(nil),        // 1: aircraft.v1.AircraftCheckResponse
+	(*CreateAircraftModelRequest)(nil),   // 2: aircraft.v1.CreateAircraftModelRequest
+	(*CreateAircraftModelResponse)(nil),  // 3: aircraft.v1.CreateAircraftModelResponse
+	(*DeleteAircraftModelRequest)(nil),   // 4: aircraft.v1.DeleteAircraftModelRequest
+	(*GetAircraftModelByIdRequest)(nil),  // 5: aircraft.v1.GetAircraftModelByIdRequest
+	(*GetAircraftModelByIdResponse)(nil), // 6: aircraft.v1.GetAircraftModelByIdResponse
+	(*emptypb.Empty)(nil),                // 7: google.protobuf.Empty
 }
 var file_aircraft_v1_aircraft_proto_depIdxs = []int32{
-	1, // 0: aircraft.v1.AircraftService.AircraftCheck:input_type -> google.protobuf.Empty
-	0, // 1: aircraft.v1.AircraftService.AircraftCheck:output_type -> aircraft.v1.AircraftCheckResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: aircraft.v1.CreateAircraftModelResponse.aircraft_model:type_name -> aircraft.v1.AircraftModel
+	0, // 1: aircraft.v1.GetAircraftModelByIdResponse.aircraft_model:type_name -> aircraft.v1.AircraftModel
+	7, // 2: aircraft.v1.AircraftService.AircraftCheck:input_type -> google.protobuf.Empty
+	2, // 3: aircraft.v1.AircraftService.CreateAircraftModel:input_type -> aircraft.v1.CreateAircraftModelRequest
+	4, // 4: aircraft.v1.AircraftService.DeleteAircraftModel:input_type -> aircraft.v1.DeleteAircraftModelRequest
+	5, // 5: aircraft.v1.AircraftService.GetAircraftModelById:input_type -> aircraft.v1.GetAircraftModelByIdRequest
+	1, // 6: aircraft.v1.AircraftService.AircraftCheck:output_type -> aircraft.v1.AircraftCheckResponse
+	3, // 7: aircraft.v1.AircraftService.CreateAircraftModel:output_type -> aircraft.v1.CreateAircraftModelResponse
+	7, // 8: aircraft.v1.AircraftService.DeleteAircraftModel:output_type -> google.protobuf.Empty
+	6, // 9: aircraft.v1.AircraftService.GetAircraftModelById:output_type -> aircraft.v1.GetAircraftModelByIdResponse
+	6, // [6:10] is the sub-list for method output_type
+	2, // [2:6] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_aircraft_v1_aircraft_proto_init() }
@@ -114,7 +452,7 @@ func file_aircraft_v1_aircraft_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_aircraft_v1_aircraft_proto_rawDesc), len(file_aircraft_v1_aircraft_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

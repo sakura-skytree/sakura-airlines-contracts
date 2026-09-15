@@ -11,25 +11,75 @@ import { Empty } from "../../google/protobuf/empty";
 
 export const protobufPackage = "aircraft.v1";
 
+export interface AircraftModel {
+  id: string;
+  manufacturer: string;
+  model: string;
+  variant: string;
+}
+
 export interface AircraftCheckResponse {
   ok: boolean;
+}
+
+export interface CreateAircraftModelRequest {
+  manufacturer: string;
+  model: string;
+  variant: string;
+}
+
+export interface CreateAircraftModelResponse {
+  aircraftModel?: AircraftModel | undefined;
+}
+
+export interface DeleteAircraftModelRequest {
+  id: string;
+}
+
+export interface GetAircraftModelByIdRequest {
+  id: string;
+}
+
+export interface GetAircraftModelByIdResponse {
+  aircraftModel?: AircraftModel | undefined;
 }
 
 export const AIRCRAFT_V1_PACKAGE_NAME = "aircraft.v1";
 
 export interface AircraftServiceClient {
   aircraftCheck(request: Empty): Observable<AircraftCheckResponse>;
+
+  createAircraftModel(request: CreateAircraftModelRequest): Observable<CreateAircraftModelResponse>;
+
+  deleteAircraftModel(request: DeleteAircraftModelRequest): Observable<Empty>;
+
+  getAircraftModelById(request: GetAircraftModelByIdRequest): Observable<GetAircraftModelByIdResponse>;
 }
 
 export interface AircraftServiceController {
   aircraftCheck(
     request: Empty,
   ): Promise<AircraftCheckResponse> | Observable<AircraftCheckResponse> | AircraftCheckResponse;
+
+  createAircraftModel(
+    request: CreateAircraftModelRequest,
+  ): Promise<CreateAircraftModelResponse> | Observable<CreateAircraftModelResponse> | CreateAircraftModelResponse;
+
+  deleteAircraftModel(request: DeleteAircraftModelRequest): void | Promise<void>;
+
+  getAircraftModelById(
+    request: GetAircraftModelByIdRequest,
+  ): Promise<GetAircraftModelByIdResponse> | Observable<GetAircraftModelByIdResponse> | GetAircraftModelByIdResponse;
 }
 
 export function AircraftServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["aircraftCheck"];
+    const grpcMethods: string[] = [
+      "aircraftCheck",
+      "createAircraftModel",
+      "deleteAircraftModel",
+      "getAircraftModelById",
+    ];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("AircraftService", method)(constructor.prototype[method], method, descriptor);
